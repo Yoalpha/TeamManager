@@ -1,0 +1,83 @@
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script type= "text/javascript "src="{{ url_for('static', filename='jaba.js') }}" ></script>
+</head>
+<body>
+    <div class="container">
+        <div class="tab-container">
+            <div id="student-tab" class="tab active" onclick="showTab('student')">Player</div>
+            <div id="coach-tab" class="tab" onclick="showTab('coach')">Coach</div>
+            
+        </div>
+            {% if error %}
+                <p>{{ error }}
+            {% endif %}
+        <form action="{{url_for("register")}}" method="POST">
+            <div id="student-content" class="tab-content active">
+                <input type="hidden" id="player" name="role" value="player">
+                <div class="input">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" name="name" required>
+                </div>
+                <div class="input">
+                    <label for="student-username">Username</label>
+                    <input type="text" id="student-name" name="username" required>
+                </div>
+                <div class="input">
+                    <label for="student-email">Email Address</label>
+                    <input type="email" id="student-email" name="email" required>
+                </div>
+                <div class="input">
+                    <label for="student-password">Create Password</label>
+                    <input type="password" id="student-password" name="password" required>
+                </div>
+                <div class="input">
+                    <label for="student-confirm-password">Confirm Password</label>
+                    <input type="password" id="student-confirm-password" name="confirm-password" required>
+                </div>
+                <div class="input">
+                    <label for="student-school">School Name</label>
+                    <input type="text" id="student-school" name="school" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+
+            </div>
+        
+    
+            <div id="coach-content" class="tab-content">
+                <input type="hidden" id="coach" name="role" value="coach">
+                <div class="input">
+                    <label for="coach-name">Full Name</label>
+                    <input type="text" id="coach-name" name="name" required>
+                </div>
+                <div class="input">
+                    <label for="coach-username">Username</label>
+                    <input type="text" id="coach-name" name="username" required>
+                </div>
+                <div class="input">
+                    <label for="coach-email">Email Address</label>
+                    <input type="email" id="coach-email" name="email" required>
+                </div>
+                <div class="input">
+                    <label for="coach-password">Create Password</label>
+                    <input type="password" id="coach-password" name="password" required>
+                </div>
+                <div class="input">
+                    <label for="coach-confirm-password">Confirm Password</label>
+                    <input type="password" id="coach-confirm-password" name="confirm-password" required>
+                </div>
+                <div class="input">
+                    <label for="coach-school">School Name</label>
+                    <input type="text" id="coach-school" name="school" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </div>
+            
+        </form>
+        <div class="footer-text">
+            <p>Already have an account? <a href="/login">Log In</a></p>
+        </div>
+    </div>
+</body>
+</html>

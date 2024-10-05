@@ -1,0 +1,177 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.notesbox{
+  position: relative;
+  width: 200%;
+  max-width: 500px;
+  min-height: 150px;
+  background: #fff;
+  color: #000000;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.topnav {
+  background-color: #007BFF;
+  overflow: visible;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-right a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+}
+
+.nav-right a.active {
+  background-color: #0056b3;
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #007BFF;
+  color: white;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1001;
+  top: 100%;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #0056b3;
+}
+
+.main-content {
+  display: flex;
+  height: calc(100vh - 90px); 
+}
+
+.left-section {
+  flex: 2;
+  background-color: #f4f4f4;
+  padding: 30px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.right-section {
+  flex: 3;
+  padding: 30px;
+}
+
+.players-tab {
+  margin-bottom: 20px;
+}
+
+.players-tab h3 {
+  margin-top: 0;
+}
+
+.players-tab ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.players-tab ul li {
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#no-teams-message {
+  display: none;
+}
+
+#no-teams-message p {
+  margin-bottom: 10px;
+}
+
+#no-teams-message a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#no-teams-message a:hover {
+  text-decoration: underline;
+}
+.submit-btn{
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+.ele1{
+  display: inline-block;
+  margin-right: 10px;
+}
+.ele2{
+  display: inline-block;
+}

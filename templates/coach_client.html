@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <script type= "text/javascript "src="{{ url_for('static', filename='jaba.js') }}" ></script>
+</head>
+<body>
+    <div class="topnav">
+        <div class="nav-center">
+            <h2>Coach Dashboard</h2>
+        </div>
+        <div class="nav-right">
+            <a class="active" href="/coach_client" id="home-link">Home</a>
+            <a href="/create_team" id="groups-link">Teams</a>
+            <div class="dropdown">
+                <button class="dropbtn">Account ({{ username }})
+                    <i class="arrow down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/logout">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="main-content">
+        <div class="left-section">
+            <h3>Your Teams</h3>
+            <div id="coach-teams">
+                {% for i in result %}
+        
+                    <li><a href="/team/{{i}}">{{ i+"  |  "+ result[i]}}</a></li>
+        
+                {% endfor %}
+            </div>
+            <br><br>
+
+            <h3>Your Tournaments</h3>
+            <div id="coach-tournaments"></div>
+        </div>
+        <div class="right-section">
+            <h1 class="welcome">Welcome, <span id="coach-name">{{ username }}</span></h1>
+            <p>Join/Add New Tournament</p>
+        </div>
+    </div>
+</body>
+</html>

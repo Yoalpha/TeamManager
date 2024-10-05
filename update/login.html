@@ -1,0 +1,40 @@
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script type= "text/javascript "src="{{ url_for('static', filename='jaba.js') }}" ></script>
+</head>
+<body>
+    <div class="container-login">
+        <div class="tab-container">
+            <div id="student-tab" class="tab active" onclick="showTab('student')">Student</div>
+            <div id="coach-tab" class="tab" onclick="showTab('coach')">Coach</div>
+        </div>
+        <form action="{{ url_for("login") }}" method="POST">
+            <div id="student-content" class="tab-content active">
+                <div class="input">
+                    <label for="student-email">Email Address</label>
+                    <input type="email" id="student-email" name="email" required>
+                </div>
+                <div class="input">
+                    <label for="student-password">Enter Password</label>
+                    <input type="password" id="student-password" name="password" required>
+                </div>
+            </div>
+            <div id="coach-content" class="tab-content">
+                <div class="input">
+                    <label for="coach-email">Email Address</label>
+                    <input type="email" id="coach-email" name="email" required>
+                </div>
+                <div class="input">
+                    <label for="student-password">Enter Password</label>
+                    <input type="password" id="student-password" name="password" required>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+        <div class="footer-text">
+            <p>Dont have an account? <a href="/Register">Register</a></p>
+        </div>
+    </div>
+</body>
+</html>

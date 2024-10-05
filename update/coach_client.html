@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="Home.css">
+    <script src="jaba.js" defer></script>
+</head>
+<body>
+    <div class="topnav">
+        <div class="nav-center">
+            <h2>Coach Dashboard</h2>
+        </div>
+        <div class="nav-right">
+            <a class="active" href="#home" id="home-link">Home</a>
+            <a href="#groups" id="groups-link">Groups</a>
+            <div class="dropdown">
+                <button class="dropbtn">Account (Player Name)
+                    <i class="arrow down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/login">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="main-content">
+        <div class="left-section">
+            <div class="players-tab">
+                <h3>Your Groups</h3>
+                <ul id="players-list">
+                </ul>
+                <div id="no-teams-message">
+                    <p>No teams available.</p>
+                    <a href="/groups.html" id="create-group-link">Create a Group</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-section">
+            <h1 class="Welcome">Welcome!</h1>
+            <p>Join/Add New Tournament</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Tournament</title>
+    <link rel="stylesheet" href="Group.css">
+    <script src="jaba.js" defer></script>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome! Create or Join a Tournament</h1>
+        <h2>Create a Tournament</h2>
+        <button id="create-group-btn">Create Tournament</button>
+        <p id="group-code-message"></p>
+
+        <hr>
+        <h2>Join a Tournament</h2>
+        <input type="text" id="tournament-code-input" placeholder="Enter Tournament Code">
+        <button id="create-group-btn">Join Tournament</button>
+        <p id="join-message"></p>
+
+        <br>
+        <a href="#home" id="home-link">Go to Homepage</a>
+    </div>
+
+    <script>
+        function generateGroupCode() {
+            let groupCode = '';
+            for (let i = 0; i < 6; i++) {
+                groupCode += Math.floor(Math.random() * 10);
+            }
+            return groupCode;
+        }
+
+        // Store created tournament codes to validate against later
+        let createdTournaments = [];
+
+        // Event listener for the "Create Tournament" button
+        document.getElementById('create-group-btn').addEventListener('click', function() {
+            const groupCode = generateGroupCode();
+            createdTournaments.push(groupCode); // Add the new code to the list of created tournaments
+            const groupCodeMessage = document.getElementById('group-code-message');
+            groupCodeMessage.textContent = `Hey, this is your new Tournament code: ${groupCode}`;
+        });
+
+        // Event listener for the "Join Tournament" button
+        document.getElementById('join-group-btn').addEventListener('click', function() {
+            const enteredCode = document.getElementById('tournament-code-input').value;
+            const joinMessage = document.getElementById('join-message');
+
+            // Check if the entered code matches any created tournament codes
+            if (createdTournaments.includes(enteredCode)) {
+                joinMessage.textContent = `Success! You've joined the tournament with code: ${enteredCode}`;
+                joinMessage.style.color = 'green';
+            } else {
+                joinMessage.textContent = 'Error: Invalid Tournament Code';
+                joinMessage.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

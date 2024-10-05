@@ -1,0 +1,37 @@
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script type= "text/javascript "src="{{ url_for('static', filename='jaba.js') }}" ></script>
+</head>
+<body>
+    <div class="container-login">
+        <div class="tab-container">
+            <div id="student-tab" class="tab active" onclick="changePlayerLogin()">Player</div>
+            <div id="coach-tab" class="tab" onclick="changeCoachLogin()">Coach</div>
+            
+        </div>
+        {% if error %}
+            <p>{{ error }}</p>
+            {% endif %}
+        <form action="{{url_for("player_login")}}" method="POST">
+            <input type="hidden" id="role" name="role" value="student"> <!-- role has the student or coach info -->
+            
+                <div class="input">
+                    <label for="student-email">Student Username</label>
+                    <input type="text" id="student-email" name="username" required>
+                </div>
+                <div class="input">
+                    <label for="student-password">Enter Password</label>
+                    <input type="password" id="student-password" name="password" required>
+                </div>
+            
+            <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        <div class="footer-text">
+            <p>Don't have an account? <a href="/player_register">Register</a></p>
+        </div>
+    </div>
+
+
+</body>
+</html>

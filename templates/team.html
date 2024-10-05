@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+</head>
+<body>
+    <div class="topnav">
+        <div class="nav-center">
+            <h2>Team Dashboard</h2>
+        </div>
+        <div class="nav-right">
+            <a href="/coach_client">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="left-section">
+            
+            <h1>Team: {{ team_name }} | Code: {{team_code}}</h1>
+            
+            
+    
+            <h2>Players</h2>
+            <ul id="team-players">
+                {% for player in players %}
+        
+                    <li>{{player}}</a></li>
+        
+                {% endfor %}
+            </ul>
+            
+        </div>
+        <div class="right-section">
+        <form  action="{{url_for("team", team_name = team_name)}}" method="POST">
+            
+                <h2>Team Chat</h2>
+                <div class="content">
+                    <div class="message-box">
+                        <div class="messages", id="messages">
+
+                        </div>
+                        <div class= "inputs">
+                            <input type="text", rows ="3", placeholder="Message", name="message", id="message">
+                            <button type="button", name="send", id="send-btn", onclick="sendMessage()">send</button>
+                        </div>
+                    </div>
+                </div>
+            
+        </form>
+    </div>
+
+        
+    </div>
+
+    <script>
+
+        var socketio = io()
+
+        const messages = document.getElementById("messages")
+
+        const createMessage = (name, msg) => {
+            const content = `
+            <div class ="text">
+                <span>
+                    <strong> ${name} </strong>: ${msg} 
+                </span> 
+                <span class="muted">
+                    ${new Date().toLocaleString()}
+                </span>
+            </div>
+            `
+            messages.innerHTML+=content;
+        };
+
+        socketio.on("message", (data) => {
+            createMessage(data.name, data.message);
+        });
+
+
+        const sendMessage = () => {
+            const message = document.getElementById("message");
+            if(message.value == "") return;
+            socketio.emit("message", {data: message.value});
+            message.value = ";"
+        };
+
+
+
+        const teams= {
+        };
+
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const teamName = urlParams.get('team') || 'Unknown Team'; 
+
+        document.getElementById('team-name').textContent = teamName;
+
+        const teamData = teamsData[teamName] || { players: [], notes: '' };
+        const playersList = document.getElementById('team-players');
+        teamData.players.forEach(player => {
+            const playerItem = document.createElement('li');
+            playerItem.textContent = player;
+            playersList.appendChild(playerItem);
+        });
+
+        if (teamData.players.length === 0) {
+            const noPlayersMessage = document.createElement('p');
+            noPlayersMessage.textContent = 'No players found in this team.';
+            playersList.appendChild(noPlayersMessage);
+        }
+
+        const notesTextarea = document.getElementById('team-notes');
+        notesTextarea.value = teamData.notes || '';
+
+        document.getElementById('save-notes-btn').addEventListener('click', function() {
+            const newNotes = notesTextarea.value;
+            teamData.notes = newNotes;  
+            const notesMessage = document.getElementById('notes-message');
+            notesMessage.textContent = 'Notes saved successfully!';
+            notesMessage.style.color = 'green';
+        });
+    </script>
+
+    {% for msg in messages %}
+            <script>
+                createMessage("{{msg.name}}", "{{msg.message}}");
+            </script>
+    {% endfor %}
+</body>
+</html>

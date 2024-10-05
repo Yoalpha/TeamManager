@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <script type= "text/javascript "src="{{ url_for('static', filename='jaba.js') }}" ></script>
+</head>
+<body>
+    <div class="topnav">
+        <div class="nav-center">
+            <h2>Player Dashboard</h2>
+        </div>
+        <div class="nav-right">
+            <a class="active" href="/player_client" id="home-link">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Account ({{ username }})
+                    <i class="arrow down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/logout">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="main-content">
+        <div class="left-section">
+            <h1>Your Teams</h1>
+            <div id="player-teams">
+                {% for i in result %}
+        
+                    <li><a href="/team/{{i}}">{{ i+"  |  "+ result[i]}}</a></li>
+        
+                {% endfor %}
+            </div>
+        </div>
+        <div class="right-section">
+            <h1 class="welcome">Welcome, <span id="player-name">{{ username }}</span>!</h1>
+            <div class="join-team-section">
+                <h3>Join a Team</h3>
+                <form id="join-team-form" action="{{url_for("player_client")}}" method="POST" >
+                    <label for="team-id">Enter Coach Name:</label>
+                    <input type="text" id="coach-name" name="coach-name" required>
+                    <br>
+                    <label for="team-id">Enter Team ID:</label>
+                    <input type="text" id="team-id" name="team-id" required>
+                    <br>
+                    <button type="submit" class="submit-btn">Join Team</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            //const playerName = "Kanye Kumar"; 
+            document.getElementById('player-name').textContent = playerName;
+            document.getElementById('player-name-dropdown').textContent = playerName;
+
+            const teams = []; 
+            const playerTeamsDiv = document.getElementById('player-teams');
+
+            if (teams.length > 0) {
+                teams.forEach(team => {
+                    const teamDiv = document.createElement('div');
+                    teamDiv.textContent = team;
+                    playerTeamsDiv.appendChild(teamDiv);
+                });
+            } else {
+                const noTeamsMessage = document.createElement('p');
+                noTeamsMessage.textContent = "You are not in any team at the moment.";
+                playerTeamsDiv.appendChild(noTeamsMessage);
+            }
+
+            document.getElementById('join-team-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const teamId = document.getElementById('team-id').value;
+                console.log(`Player ${playerName} is joining ${teamId}`);
+                alert(`You have joined the team with ID: ${teamId}`);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script type= "text/javascript "src="{{ url_for('static', filename='jaba.js') }}" ></script>
+</head>
+<body>
+    <div class="container">
+        <div class="tab-container">
+            <div id="student-tab" class="tab active" onclick=" changePlayerRegister()">Player</div>
+            <div id="coach-tab" class="tab" onclick=" changeCoachRegister()">Coach</div>
+            
+        </div>
+        {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+        <form action="{{url_for("player_register")}}" method="POST">
+            <div class="input">
+                <input type="hidden" id="coach" name="role" value="player">
+                
+                    <label for="coach-name">Full Name</label>
+                    <input type="text" id="coach-name" name="name" required>
+                </div>
+                <div class="input">
+                    <label for="coach-name">Username</label>
+                    <input type="text" id="coach-name" name="username" required>
+                </div>
+                <div class="input">
+                    <label for="coach-email">Email Address</label>
+                    <input type="email" id="coach-email" name="email" required>
+                </div>
+                <div class="input">
+                    <label for="coach-password">Create Password</label>
+                    <input type="password" id="coach-password" name="password" required>
+                </div>
+                <div class="input">
+                    <label for="coach-confirm-password">Confirm Password</label>
+                    <input type="password" id="coach-confirm-password" name="confirm-password" required>
+                </div>
+                <div class="input">
+                    <label for="coach-school">School Name</label>
+                    <input type="text" id="coach-school" name="school" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            
+            
+        </form>
+        <div class="footer-text">
+            <p>Already have an account? <a href="/player_login">Log In</a></p>
+        </div>
+    </div>
+</body>
+</html>
