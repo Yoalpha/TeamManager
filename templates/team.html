@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Details</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='team.css') }}">
 </head>
 <body>
     <div class="topnav">
@@ -36,7 +36,7 @@
             
         </div>
         <div class="right-section">
-        <form  action="{{url_for("team", team_name = team_name)}}" method="POST">
+        
             
                 <h2>Team Chat</h2>
                 <div class="content">
@@ -51,13 +51,21 @@
                     </div>
                 </div>
             
-        </form>
+        
     </div>
 
         
     </div>
 
     <script>
+
+            document.getElementById("message").addEventListener("keydown", function (event) {
+            if (event.keyCode === 13) {
+                // Check if Enter key is pressed
+                document.getElementById("send-btn").click();
+                // Trigger button click
+            }
+        });
 
         var socketio = io()
 
@@ -86,7 +94,7 @@
             const message = document.getElementById("message");
             if(message.value == "") return;
             socketio.emit("message", {data: message.value});
-            message.value = ";"
+            message.value = "";
         };
 
 

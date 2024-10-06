@@ -136,6 +136,8 @@ def coach_client():
             arr[i['team_name']] = i['_id']
         print(arr)  
         return render_template('coach_client.html', username = session['username'], result = arr)
+    elif 'username' in session and session['role'] == 'student':
+        return redirect(url_for('player_client'))
     else:
         return redirect(url_for('coach_login'))
     
@@ -208,12 +210,23 @@ def team(team_name):
         return render_template('team.html', team_name = team_name, team_code = team_code, players = players, messages = rooms[room]["messages"])
     
     elif 'username' in session and session['role'] == 'student':
+
+        result = mongomanager.getPlayerTeams(session['username'])
+        arr = {}
+    
+        for i in result:
+            arr[i['team_name']] = i['_id']
+            arr['coachname'] = i['coach_name']
+        print('student arr', arr) 
+        players = mongomanager.getTeamPlayers(arr['coachname'], team_name)
+
+        
         #chat room
         team_code = arr[team_name]
         room = str(team_code)
-        rooms[room] = {"members": len(players), "messages": []}
+        rooms[room] = {"members": 1 ,"messages": []}
         session['room'] = room
-        return render_template('team.html', team_name = team_name,  messages = rooms[room]["messages"])
+        return render_template('team.html', team_code = arr[team_name], team_name = team_name, players = players,  messages = rooms[room]["messages"])
 
     else:
         return redirect('coach_login')
@@ -246,6 +259,12 @@ def connect():
     print(rooms)
     rooms[room]['members']+=1
     print(name, room)
+
+@socketio.on("disconnect")
+def disconnect():
+    room = session['room']
+    name = session['username']
+    leave_room(room)
 
 
 @app.route('/logout')
