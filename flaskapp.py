@@ -19,14 +19,6 @@ rooms ={}
 
 @app.route("/", methods =["GET", "POST"])
 def main():
-    if request.method == "POST":
-       # getting input with name = fname in HTML form
-        player_name = request.form.get("player")
-       # getting input with name = lname in HTML form 
-        player_notes = request.form.get("notes") 
-        
-        mongomanager.addplayer(player_name, player_notes)
-        #print(collection.find())
 
     return render_template("home.html")
 
@@ -220,7 +212,7 @@ def team(team_name):
         print('student arr', arr) 
         players = mongomanager.getTeamPlayers(arr['coachname'], team_name)
 
-        
+
         #chat room
         team_code = arr[team_name]
         room = str(team_code)
