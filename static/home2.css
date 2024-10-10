@@ -11,6 +11,7 @@
     line-height: 1.6;
     color: #c9d1d9;
     background-color: #0d0d0d;
+    padding: 0 50px; /* Add 50px padding on both sides */
   }
   
   a {
@@ -26,8 +27,8 @@
   /* Navigation Bar */
   
   .topnav {
-    background-color: #050505; 
-    padding: 1.5em; 
+    background-color: #050505; /* Jet black background color */
+    padding: 1.5em 50px; /* Increase the padding to make the nav bar thicker and add 50px padding on both sides */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,7 +51,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2em;
+    padding: 2em 50px; /* Add 50px padding on both sides */
   }
   
   .home-section {
@@ -102,6 +103,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 0 50px; /* Add 50px padding on both sides */
   }
   
   .feature {
@@ -122,6 +124,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 0 50px; /* Add 50px padding on both sides */
   }
   
   .testimonial {
@@ -144,6 +147,7 @@
     margin-top: 20px;
     display: flex;
     justify-content: center;
+    padding: 0 50px; /* Add 50px padding on both sides */
   }
   
   .get-started-btn {

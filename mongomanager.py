@@ -26,37 +26,47 @@ def createTeam(CoachUsername, teamID, team_name):
 
 def checkPlayerUserExists(username, email):
     temp = []
+    temp2 = []
    
     result_username = players.find({'username': username})
     result_email = players.find({'email': email})
     for i in result_username:
         temp.append(i)
-  
+    for j in result_email:
+        temp2.append(j)
 
     if temp != []:
         return 'Username'
+    elif temp2 != []:
+        return 'E-Mail'
     else:
         return''
     
 def checkCoachUserExists(username, email):
     temp = []
+    temp2 = []
     
     result_username = coaches.find({'username': username})
     result_email = coaches.find({'email': email})
     for i in result_username:
         temp.append(i)
+    for j in result_email:
+        temp2.append(j)
     
     print(temp)
     if temp != []:
         return 'Username'
-    
+    elif temp2 != []:
+        return 'E-Mail'
     else:
         return''
     
 def playerLogin(username, password):
     result = players.find_one({'username': username})
     print(result)
-    if password == result['password']:
+    if result == None:
+        return
+    elif password == result['password']:
         return True
     else:
         return False
@@ -64,7 +74,9 @@ def playerLogin(username, password):
 def coachLogin(username, password):
     result = coaches.find_one({'username': username})
 
-    if password == result['password']:
+    if result == None:
+        return
+    elif password == result['password']:
         return True
     else:
         return False   

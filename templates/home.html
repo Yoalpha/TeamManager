@@ -32,6 +32,7 @@
 
         <div class="features-section">
             <h1>Features</h1>
+            <br>
             <div class="feature">
                 <h2>Communication</h2>
                 <p>Coaches and players can communicate with each other through our messaging system.</p>
@@ -42,20 +43,14 @@
             </div>
             <div class="feature">
                 <h2>Player Profiles</h2>
-                <p>Players can create profiles to showcase their skills and experience.</p>
+                <p>Players can create profiles to view team players and read coaches notes.</p>
             </div>
         </div>
 
 
-        <div class="call-to-action-section">
-            <h1>Get Started Today!</h1>
-            <button class="get-started-btn" onclick="window.location.href='{{ url_for('coach_register') }}'">Register Now</button>
-        </div>
     </div>
 
-    <div class="background-image">
-        <img src="{{ url_for('static', filename='background.jpg') }}" alt="Background Image">
-    </div>
+    
 
     <script>
         const playerLoginBtn = document.querySelector('.player-btns .login-btn');
