@@ -16,6 +16,14 @@
         <div class="nav-right">
             <a href="/coach_client">Back to Dashboard</a>
         </div>
+        <div class="dropdown">
+            <button class="dropbtn">Delete Team
+                <i class="arrow down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/delete/{{team_code}}"> Delete </a>
+            </div>
+        </div>
     </div>
 
     <div class="main-content">
@@ -51,7 +59,7 @@
                     </div>
                 </div>
             
-        
+                
     </div>
 
         
@@ -97,45 +105,11 @@
             message.value = "";
         };
 
-
-
-        const teams= {
-        };
-
-        // const urlParams = new URLSearchParams(window.location.search);
-        // const teamName = urlParams.get('team') || 'Unknown Team'; 
-
-        document.getElementById('team-name').textContent = teamName;
-
-        const teamData = teamsData[teamName] || { players: [], notes: '' };
-        const playersList = document.getElementById('team-players');
-        teamData.players.forEach(player => {
-            const playerItem = document.createElement('li');
-            playerItem.textContent = player;
-            playersList.appendChild(playerItem);
-        });
-
-        if (teamData.players.length === 0) {
-            const noPlayersMessage = document.createElement('p');
-            noPlayersMessage.textContent = 'No players found in this team.';
-            playersList.appendChild(noPlayersMessage);
-        }
-
-        const notesTextarea = document.getElementById('team-notes');
-        notesTextarea.value = teamData.notes || '';
-
-        document.getElementById('save-notes-btn').addEventListener('click', function() {
-            const newNotes = notesTextarea.value;
-            teamData.notes = newNotes;  
-            const notesMessage = document.getElementById('notes-message');
-            notesMessage.textContent = 'Notes saved successfully!';
-            notesMessage.style.color = 'green';
-        });
     </script>
 
     {% for msg in messages %}
-            <script>
-                createMessage("{{msg.name}}", "{{msg.message}}");
+            <script type = "text/javascript">
+                createMessage("{{ msg.name }}", "{{ msg.message }}");
             </script>
     {% endfor %}
 </body>

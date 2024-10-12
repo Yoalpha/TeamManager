@@ -116,7 +116,10 @@ def getTeamPlayers(coach_name, team_name):
     return players
 
 
-    
+def deleteTeam(coach_name, team_id):
+    collection = coachesteamsdb[str(coach_name)]
+    query = {"_id": team_id}
+    collection.delete_one(query)
 
     
 #def deleteplayer(name):

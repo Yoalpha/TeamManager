@@ -14,7 +14,8 @@ cluster = MongoClient('mongodb+srv://yoyogesh27:LH44isthegoat@cluster0.umivw3g.m
 
 
 socketio = SocketIO(app)
-rooms ={}
+global rooms 
+rooms = {}
 
 
 @app.route("/", methods =["GET", "POST"])
@@ -166,6 +167,7 @@ def create_team():
             team_name = request.form.get('team-name')
             groupcode = randomCode.get_random_string(6)
             mongomanager.createTeam(session['username'], groupcode, team_name)
+            rooms[groupcode] = {"members": 1 ,"messages": []}
             return render_template('groups.html', groupCode = groupcode)
         return render_template('groups.html')
     else:
@@ -190,10 +192,11 @@ def team(team_name):
         #chat room
         team_code = arr[team_name]
         room = str(team_code)
-        rooms[room] = {"members": len(players), "messages": []}
+        if room not in rooms:
+            rooms[room] = {"members": 1 ,"messages": []}
         session['room'] = room
         
-
+        print('rooms', rooms)
 
 
 
@@ -216,8 +219,11 @@ def team(team_name):
         #chat room
         team_code = arr[team_name]
         room = str(team_code)
-        rooms[room] = {"members": 1 ,"messages": []}
+        if room not in rooms:
+            rooms[room] = {"members": 1 ,"messages": []}
         session['room'] = room
+
+        print(rooms[room]["messages"])
         return render_template('team.html', team_code = arr[team_name], team_name = team_name, players = players,  messages = rooms[room]["messages"])
 
     else:
@@ -226,16 +232,18 @@ def team(team_name):
 
 @socketio.on("message")
 def message(data):
-    room = session['room']
+    print('hahah', session.get('room'))
+    room = session.get('room')
     if room not in rooms:
         return
     content  = {
         
-        "name": session['username'],
+        "name": session.get('username'),
         "message": data['data']
     }
     send(content, to=room)
     rooms[room]['messages'].append(content)
+    print(rooms[room]['messages'])
 
 @socketio.on('connect')   
 def connect():
@@ -256,7 +264,15 @@ def connect():
 def disconnect():
     room = session['room']
     name = session['username']
-    leave_room(room)
+    #leave_room(room)
+
+
+@app.route('/delete/<team_code>')
+def delete(team_code):
+    coach_name = session.get('username')
+    mongomanager.deleteTeam(coach_name,team_code)
+    return redirect(url_for('coach_client'))
+
 
 
 @app.route('/logout')
