@@ -23,11 +23,35 @@
 
 /* Main Content Section */
 
+input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #161b22;
+    border-radius: 10px;
+    width: 200px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1a1d23;
+    color: #c9d1d9;
+  }
+  
+  input[type="text"]:focus {
+    background-color: #1f2329;
+  }
+
 .main-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 2em;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #161b22;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .content-container {
@@ -37,7 +61,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 600px;
-    border: 1px solid #30363d;
+    
 }
 
 .welcome {

@@ -23,112 +23,9 @@
     color: #4f97d7;
   }
   
-  /* Navigation Bar */
-  
 
     
-  .topnav {
-    background-color: #050505; /* Jet black background color */
-    padding: 1.5em; /* Increase the padding to make the nav bar thicker */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #30363d;
-  }
-  
-  .nav-center {
-    flex: 1;
-  }
-  
-  .nav-center h2 {
-    color: #c9d1d9;
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  .nav-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto; /* Move the coach dashboard towards the right */
-  }
-  
-  .nav-right a {
-    margin-right: 20px;
-    color: #c9d1d9;
-    transition: color 0.2s ease, background-color 0.2s ease; /* Add transition for hover animations */
-  }
-  
-  .nav-right a.active {
-    font-weight: bold;
-    color: #58a6ff;
-  }
-  
-  .nav-right a:hover {
-    color: #fff;
-    background-color: #161b22; /* Dark gray hover color */
-    border-radius: 10px;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #161b22;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 10px;
-    border: 1px solid #30363d;
-  }
-  
-  .dropdown-content a {
-    color: #c9d1d9;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    transition: color 0.2s ease, background-color 0.2s ease; /* Add transition for hover animations */
-  }
-  
-  .dropdown-content a:hover {
-    color: #fff;
-    background-color: #1a1d23; /* Dark gray hover color */
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-  }
-  
-  .dropbtn {
-    background-color: #161b22;
-    color: #c9d1d9;
-    padding: 12px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.2s ease; /* Add transition for hover animations */
-  }
-  
-  .dropbtn:hover {
-    background-color: #3e8e41;
-  }
-  
-  .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-  }
-  
+
   /* Main Content Section */
   
   .main-content {
@@ -190,9 +87,9 @@
 
   /* Navigation Bar */
 
-.topnav {
+  .topnav {
     background-color: #050505; /* Jet black background color */
-    padding: 1em;
+    padding: 1.5em; /* Increase the padding to make the nav bar thicker */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -212,6 +109,7 @@
   .nav-right {
     display: flex;
     align-items: center;
+    margin-left: auto; /* Move the coach dashboard towards the right */
   }
   
   .nav-right a {
