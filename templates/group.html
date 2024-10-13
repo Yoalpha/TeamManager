@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Group</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='group.css') }}">
+    
+</head>
+<body>
+    <div class="topnav">
+        <div class="nav-center">
+            <h2>Coach Dashboard</h2>
+        </div>
+        <div class="nav-right">
+            <a href="/coach_client" id="home-link">Home</a>
+            <a href="/create_team" id="groups-link">Teams</a>
+            <a class="active"href="/create_tornament" id="groups-link">Tornaments</a>
+            <div class="dropdown">
+                <button class="dropbtn">Account ({{ username }})
+                    <i class="arrow down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/logout">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="main-content">
+        <div class="content-container">
+            <h1 class="welcome">Welcome! Create a Group Here</h1>
+            <form action="{{url_for("create_team")}}" method="POST">
+                <div class="form-group">
+                    <label for="team-id">Enter Team Name:</label>
+                    <input type="text" id="team-id" name="team-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Team Code:</label>
+                    <p id="group-code-message">{{ groupCode }}</p>
+                </div>
+                <button type="submit" class="submit-btn" id="create-group-btn">Create Group</button>
+            </form>
+            <a href="/coach_client" id="home-link">Go to Homepage</a>
+        </div>
+    </div>
+
+    <script>
+        function generateGroupCode() {
+            let groupCode = '';
+            for (let i = 0; i < 6; i++) {
+                groupCode += Math.floor(Math.random() * 10);
+            }
+            return groupCode;
+        }
+
+        document.getElementById('create-group-btn').addEventListener('click', function() {
+            const groupCode = generateGroupCode();
+            const groupCodeMessage = document.getElementById('group-code-message');
+            groupCodeMessage.textContent = `Hey, this is your new group's code: ${groupCode}`;
+        });
+    </script>
+</body>
+</html>

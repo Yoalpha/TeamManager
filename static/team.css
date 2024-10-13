@@ -104,7 +104,7 @@
     font-weight: bold;
   }
   
-  .nav-right {
+    .nav-right {
     display: flex;
     align-items: center;
     margin-left: auto; /* Move the coach dashboard towards the right */

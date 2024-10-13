@@ -168,8 +168,8 @@ def create_team():
             groupcode = randomCode.get_random_string(6)
             mongomanager.createTeam(session['username'], groupcode, team_name)
             rooms[groupcode] = {"members": 1 ,"messages": []}
-            return render_template('groups.html', groupCode = groupcode)
-        return render_template('groups.html')
+            return render_template('group.html', groupCode = groupcode)
+        return render_template('group.html')
     else:
         return redirect('coach_login')
     
@@ -265,6 +265,16 @@ def disconnect():
     room = session['room']
     name = session['username']
     #leave_room(room)
+
+@app.route('/create_tornament')
+def create_tornament():
+    if 'username' in session and session['role'] == 'coach':
+
+        return render_template('tornament_create.html')
+    
+    else:
+        return redirect(url_for('coach_login'))
+
 
 
 @app.route('/delete/<team_code>')

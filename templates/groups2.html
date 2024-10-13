@@ -1,0 +1,24 @@
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='group.css') }}">
+</head>
+<body>
+    <div class="topnav">
+        <div class="nav-center">
+            <h2>Coach Dashboard</h2>
+        </div>
+        <div class="nav-right">
+            <a href="/coach_client" id="home-link">Home</a>
+            <a  class="active" href="/create_team" id="groups-link">Teams</a>
+            <a href="/create_tornament" id="groups-link">Tornaments</a>
+            <div class="dropdown">
+                <button class="dropbtn">Account ({{ username }})
+                    <i class="arrow down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/logout">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>

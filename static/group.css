@@ -1,59 +1,199 @@
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: #c9d1d9;
+    background-color: #0d0d0d;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #58a6ff;
+    outline: none;
+  }
+  
+  a:hover {
+    color: #4f97d7;
+  }
+
+/* Main Content Section */
+
+.main-content {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2em;
 }
 
-.content {
-    background-color: white;
-    padding: 20px 40px;
+.content-container {
+    background-color: #161b22;
+    padding: 2em;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #30363d;
 }
 
-.content h1 {
-    color: #333;
+.welcome {
     font-size: 24px;
+    font-weight: bold;
+    color: #58a6ff;
     margin-bottom: 20px;
 }
 
-#create-group-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.form-group {
+    margin-bottom: 15px;
 }
 
-#create-group-btn:hover {
-    background-color: #45a049;
+.form-group label {
+    display: block;
+    color: #c9d1d9;
+    margin-bottom: 5px;
 }
 
 #group-code-message {
-    color: #555;
     font-size: 18px;
-    margin-top: 20px;
+    font-weight: bold;
+    color: #58a6ff;
+    margin-top: 5px;
 }
 
+/* Button Styles */
+
+.submit-btn {
+    background-color: #58a6ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #4f97d7;
+}
+
+/* Link Styles */
+
 #home-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: #2174a5;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease;
+    color: #c9d1d9;
+    transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 #home-link:hover {
-    color: #23c6cc;
+    color: #fff;
+    background-color: #161b22;
+    border-radius: 10px;
+}
+
+/* Top Navigation Bar */
+
+.topnav {
+    background-color: #050505;
+    padding: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #30363d;
+}
+
+.nav-center {
+    flex: 1;
+}
+
+.nav-center h2 {
+    color: #c9d1d9;
+    margin: 0;
+    font-weight: bold;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-right a {
+    margin-right: 20px;
+    color: #c9d1d9;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-right a.active {
+    font-weight: bold;
+    color: #58a6ff;
+}
+
+.nav-right a:hover {
+    color: #fff;
+    background-color: #161b22;
+    border-radius: 10px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #161b22;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+}
+
+.dropdown-content a {
+    color: #c9d1d9;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    color: #fff;
+    background-color: #1a1d23;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.dropbtn {
+    background-color: #161b22;
+    color: #c9d1d9;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.dropbtn:hover {
+    background-color: #3e8e41;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
