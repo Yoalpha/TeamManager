@@ -184,7 +184,14 @@ input[type="text"] {
     width: 200px;
 }
 
-#group-code-message, #join-message {
+#group-code-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: #58a6ff;
+  margin-top: 5px;
+}
+
+ #join-message {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;

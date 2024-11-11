@@ -15,7 +15,7 @@
         <div class="nav-right">
             <a href="/coach_client" id="home-link">Home</a>
             <a href="/create_team" id="groups-link">Teams</a>
-            <a class="active"href="/create_tornament" id="groups-link">Tornaments</a>
+            <a class="active"href="/create_tournament" id="groups-link">Tornaments</a>
             <div class="dropdown">
                 <button class="dropbtn">Account ({{ username }})
                     <i class="arrow down"></i>
@@ -29,15 +29,30 @@
     <div class="content">
         <div class="content-container">
             <h1>Welcome! Create or Join a Tournament</h1>
-            <p>Create a Tornament:</p>
-            <br>
             
-            <button id="create-group-btn">Create Tournament</button>
-            <p id="group-code-message"></p>
+            <h2>Create a Tornament:</h2>
+            <br>
+            <form action="{{url_for("create_tournament")}}" method="POST">
+                <div class="form-group">
+                    <label for="team-id">Enter Tournament Name:</label>
+                    <input type="text" id="tournament-id" placeholder="Tournament Name" name="tournament-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Tournament Code: <b id="group-code-message">{{ tournamentCode }}</b></label>
+                    
+                </div>
+                <br>
+                <button type="submit" class="submit-btn" id="create-group-btn">Create Tournament</button>
+            </form>
+ 
+
+            
+
+            
 
             <br>
-            <p>Join a Tornament:</p>
-            
+            <h2>Join a Tournament:</h2>
+            <br>
             <input type="text" id="tournament-code-input" placeholder="Enter Tournament Code">
             <br>
             <br>
@@ -49,40 +64,6 @@
         </div>
     </div>
 
-    <script>
-        function generateGroupCode() {
-            let groupCode = '';
-            for (let i = 0; i < 6; i++) {
-                groupCode += Math.floor(Math.random() * 10);
-            }
-            return groupCode;
-        }
 
-        // Store created tournament codes to validate against later
-        let createdTournaments = [];
-
-        // Event listener for the "Create Tournament" button
-        document.getElementById('create-group-btn').addEventListener('click', function() {
-            const groupCode = generateGroupCode();
-            createdTournaments.push(groupCode); // Add the new code to the list of created tournaments
-            const groupCodeMessage = document.getElementById('group-code-message');
-            groupCodeMessage.textContent = `Hey, this is your new Tournament code: ${groupCode}`;
-        });
-
-        // Event listener for the "Join Tournament" button
-        document.getElementById('join-group-btn').addEventListener('click', function() {
-            const enteredCode = document.getElementById('tournament-code-input').value;
-            const joinMessage = document.getElementById('join-message');
-
-            // Check if the entered code matches any created tournament codes
-            if (createdTournaments.includes(enteredCode)) {
-                joinMessage.textContent = `Success! You've joined the tournament with code: ${enteredCode}`;
-                joinMessage.style.color = 'green';
-            } else {
-                joinMessage.textContent = 'Error: Invalid Tournament Code';
-                joinMessage.style.color = 'red';
-            }
-        });
-    </script>
 </body>
 </html>

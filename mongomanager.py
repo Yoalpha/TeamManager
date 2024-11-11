@@ -6,6 +6,7 @@ cluster = MongoClient('mongodb+srv://yoyogesh27:LH44isthegoat@cluster0.umivw3g.m
 logindb = cluster["login"]
 coachesteamsdb = cluster["coachesteams"]
 playerteamsdb = cluster["playerteams"]
+coachestournamentdb = cluster["coachestournament"]
 
 coaches = logindb["coaches"]
 players = logindb["players"]
@@ -22,6 +23,10 @@ def createTeam(CoachUsername, teamID, team_name):
     post={'_id': teamID, 'team_name':team_name, 'players': []}
     CoachUsername.insert_one(post)
 
+def createTournament(CoachUsername, tournamentID, tournament_name):
+    CoachUsername = coachestournamentdb[str(CoachUsername)]
+    post={'_id': tournamentID, 'tournament_name':tournament_name, 'teams': []}
+    CoachUsername.insert_one(post)
     
 
 def checkPlayerUserExists(username, email):
@@ -95,6 +100,13 @@ def addPlayerToTeam(team_id, coach_name, username):
 
 def getCoachTeams(coach_name):
     collect = coachesteamsdb[str(coach_name)]
+    result = collect.find()
+    
+    
+    return result
+
+def getCoachTournament(coach_name):
+    collect = coachestournamentdb[str(coach_name)]
     result = collect.find()
     
     

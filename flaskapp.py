@@ -124,11 +124,18 @@ def coach_client():
 
         result = mongomanager.getCoachTeams(session['username'])
         arr = {}
+        result2 = mongomanager.getCoachTournament(session['username'])
+        arr2 = {}
     
         for i in result:
             arr[i['team_name']] = i['_id']
         print(arr)  
-        return render_template('coach_client.html', username = session['username'], result = arr)
+
+        for i in result2:
+            arr2[i['tournament_name']] = i['_id']
+        print(arr)  
+
+        return render_template('coach_client.html', username = session['username'], result = arr, resulttournament = arr2)
     elif 'username' in session and session['role'] == 'student':
         return redirect(url_for('player_client'))
     else:
@@ -172,6 +179,22 @@ def create_team():
         return render_template('group.html', username = session.get('username'))
     else:
         return redirect('coach_login')
+    
+@app.route('/create_tournament', methods = ['GET', 'POST'])
+def create_tournament():
+    if 'username' in session and session['role'] == 'coach':
+        if request.method == 'POST':
+            tournament_name = request.form.get('tournament-name')
+            tournamentcode = randomCode.get_random_string(6)
+            mongomanager.createTournament(session['username'], tournamentcode, tournament_name)
+            
+            
+            return render_template('tornament_create.html', tournamentCode = tournamentcode, username = session.get('username'))
+        return render_template('tornament_create.html', username = session.get('username'))
+    else:
+        return redirect(url_for('coach_login'))
+
+
     
 @app.route('/team/<team_name>', methods =["GET", "POST"])
 def team(team_name):
@@ -265,16 +288,6 @@ def disconnect():
     room = session['room']
     name = session['username']
     #leave_room(room)
-
-@app.route('/create_tornament')
-def create_tornament():
-    if 'username' in session and session['role'] == 'coach':
-
-        return render_template('tornament_create.html', username = session.get('username'))
-    
-    else:
-        return redirect(url_for('coach_login'))
-
 
 
 @app.route('/delete/<team_code>')

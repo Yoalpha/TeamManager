@@ -85,6 +85,30 @@
     color: #c9d1d9;
   }
 
+  .right-section h3 {
+    margin-top: 0;
+    color: #58a6ff;
+  }
+
+  #coach-tournaments {
+    list-style: none;
+
+  }
+  
+  #coach-tournaments a {
+    color: #58a6ff;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #1a1d23;
+    transition: background-color 0.2s ease;
+    margin-bottom: 10px;
+  }
+  
+  #coach-tournaments a:hover {
+    background-color: #1f2329;
+  }
+
   /* Navigation Bar */
 
   .topnav {
