@@ -8,9 +8,18 @@ import random
 from string import ascii_uppercase
 
 app = Flask(__name__)
-app.secret_key = '3ZsHvAF9nsbuZyzM3EF8pRJk5SNR9kAz'
-app.config['SECRET_KEY'] = '3ZsHvAF9nsbuZyzM3EF8pRJk5SNR9kAz'
-cluster = MongoClient('mongodb+srv://yoyogesh27:LH44isthegoat@cluster0.umivw3g.mongodb.net/?retryWrites=true&w=majority')
+
+SECRET = open("secretKey.txt", "r")
+SECRET_KEY = SECRET.readline()
+SECRET.close()
+MONGO = open('mongoURL.txt', 'r')
+MONGO_URL = MONGO.readline()
+MONGO.close()
+
+app.secret_key = SECRET_KEY
+app.config['SECRET_KEY'] = SECRET_KEY
+cluster = MongoClient(MONGO_URL)
+
 
 
 socketio = SocketIO(app)
@@ -295,6 +304,15 @@ def delete(team_code):
     coach_name = session.get('username')
     mongomanager.deleteTeam(coach_name,team_code)
     return redirect(url_for('coach_client'))
+
+@app.route('/tournament/<tournament_name>')
+def tournament(tournament_name):
+    if 'username' in session and session['role'] == 'coach':
+        return render_template('Tournament-Home.html', tournament_name = tournament_name, tournament_id = tournament_id)
+    else:  
+        return redirect(url_for(coach_login))
+
+
 
 
 

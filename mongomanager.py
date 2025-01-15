@@ -112,6 +112,8 @@ def getCoachTournament(coach_name):
     
     return result
 
+
+
 def getPlayerTeams(player_name):
     collect = playerteamsdb[str(player_name)]
     result = collect.find()
