@@ -25,7 +25,7 @@ def createTeam(CoachUsername, teamID, team_name):
 
 def createTournament(CoachUsername, tournamentID, tournament_name):
     CoachUsername = coachestournamentdb[str(CoachUsername)]
-    post={'_id': tournamentID, 'tournament_name':tournament_name, 'teams': []}
+    post={'_id': tournamentID, 'tournament_name':tournament_name, 'teams': [CoachUsername]}
     CoachUsername.insert_one(post)
     
 
@@ -97,6 +97,18 @@ def addPlayerToTeam(team_id, coach_name, username):
     post={'_id': team_id, 'team_name': team_name, 'coach_name': coach_name}
     PlayerUsername.insert_one(post)
     collect.update_one({"_id":str(team_id)},{"$set":{"players":arr}})
+
+def addTeamToTournament(tournament_id, coach_name, username):
+    collect = coachestournamentdb[str(coach_name)]
+    result = collect.find_one({'_id': tournament_id})
+    print(result)
+    arr = result['teams']
+    tournament_name = result['tournament_name']
+    arr.append(username)
+    CoachUsername = coachesteamsdb[str(username)]
+    post={'_id': tournament_id, 'tournament_name': tournament_name, 'coach_name': coach_name}
+    CoachUsername.insert_one(post)
+    collect.update_one({"_id":str(tournament_id)},{"$set":{"teams":arr}})
 
 def getCoachTeams(coach_name):
     collect = coachesteamsdb[str(coach_name)]

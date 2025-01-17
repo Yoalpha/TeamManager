@@ -307,7 +307,7 @@ def delete(team_code):
 
 @app.route('/tournament/<tournament_name>')
 def tournament(tournament_name):
-    if 'username' in session and session['role'] == 'coach':
+    if 'username' in session and session['role'] == 'coach': 
         return render_template('Tournament-Home.html', tournament_name = tournament_name, tournament_id = tournament_id)
     else:  
         return redirect(url_for(coach_login))
