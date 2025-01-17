@@ -309,6 +309,7 @@ def delete(team_code):
 def tournament(tournament_name):
     if 'username' in session and session['role'] == 'coach': 
         return render_template('Tournament-Home.html', tournament_name = tournament_name)
+    else:  
         return redirect(url_for(coach_login))
 
 
