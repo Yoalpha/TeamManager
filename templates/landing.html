@@ -3,14 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kickoff Manager</title>
-    <link rel="stylesheet" href="F:\College\Projects\git tournament\TeamManager\static\landing_c.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='landing_c.css') }}">
 </head>
 <body>
     <header>
-        <img src="F:\College\Projects\git tournament\TeamManager\static\Images\file.png" >
+        <img src="{{user_image}}" >
         <nav>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
         </nav>
     </header>
     <main class="main-section">
