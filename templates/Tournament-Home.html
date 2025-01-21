@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tournament Bracket</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='tournament1.css') }}">
-    <script src="{{ url_for('static', filename='tournament.js') }}" defer></script>
+    <link rel="stylesheet" href="F:\College\Projects\git tournament\TeamManager\static\tournament1.css">
+    <script src="F:\College\Projects\git tournament\TeamManager\static\tournament.js" defer></script>
 </head>
 <body>
+    <div class="topnav">
+        <div class="nav-center">
+            <h2>Tournament</h2>
+        </div>
+        <div class="nav-right">
+            <a href="/coach_client" class="home">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Account ({{ username }})
+                    <i class="arrow down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/logout">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div>  
 
-    <div class="navbar">
-        <a href="/coach_client">Home</a>
-    </div>
-    <h1 style="text-align: center;"> {{ tournament_name }}</h1>
+    <h1 style="text-align: center;">{{ tournament_name }}</h1>
 
     <div id="bracket"></div>
-
 </body>
 </html>
