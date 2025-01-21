@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Tournament</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='tornament_create.css') }}">
+    <link rel="stylesheet" href="F:\College\Projects\git tournament\TeamManager\static\tornament_create.css">
 
 </head>
 <body>
@@ -13,7 +13,7 @@
             <h2>Coach Dashboard</h2>
         </div>
         <div class="nav-right">
-            <a href="/coach_client" id="home-link">Home</a>
+            <a href="/coach_client" class="home">Home</a>
             <a href="/create_team" id="groups-link">Teams</a>
             <a class="active"href="/create_tournament" id="groups-link">Tornaments</a>
             <div class="dropdown">
@@ -30,7 +30,7 @@
         <div class="content-container">
             <h1>Welcome! Create or Join a Tournament</h1>
             
-            <h2>Create a Tornament:</h2>
+            <h2>Create a Tournament:</h2>
             <br>
             <form action="{{url_for("create_tournament")}}" method="POST">
                 <div class="form-group">

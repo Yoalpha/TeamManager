@@ -1,6 +1,7 @@
 function generateBracket() {
     const bracket = document.getElementById('bracket');
     bracket.innerHTML = '';
+    //got to fetch the datat here and get it into teams and the other arrays
     const teams = [
         'Team 1', 'Team 2', 'Team 3', 'Team 4',
         'Team 5', 'Team 6','Team 7'
@@ -21,20 +22,33 @@ function generateBracket() {
         currentRoundTeams = matches.map(() => '');
     }
 
+    let winnersByRound = []; // this is for storing all of the winners
+
     function handleWinnerEntry(input, roundIndex, matchIndex) {
         const winner = input.value.trim();
-        if (winner) {
-            if (roundIndex + 1 < matchesPerRound.length) {
-                const nextRoundMatchIndex = Math.floor(matchIndex / 2);
-                const nextRoundTeamPosition = matchIndex % 2 === 0 ? 'team1' : 'team2';
-                const nextRoundMatchDiv = document.getElementById(`round-${roundIndex + 1}-match-${nextRoundMatchIndex}`);
-                const nextRoundTeamSpan = nextRoundMatchDiv.querySelector(`.${nextRoundTeamPosition}`);
-                nextRoundTeamSpan.innerText = winner;
-            } else {
-                document.getElementById('final-winner').innerText = `Winner: ${winner}`;
-            }
-            input.remove();
+        const match = matchesPerRound[roundIndex][matchIndex];
+        if (winner !== match.team1 && winner !== match.team2) {
+            alert(`Invalid winner! Please enter either "${match.team1}" or "${match.team2}".`);
+            input.value = ''; 
+            input.focus(); 
         }
+    
+        if (!winnersByRound[roundIndex]) {
+            winnersByRound[roundIndex] = [];
+        }
+        winnersByRound[roundIndex][matchIndex] = winner;
+        if (roundIndex + 1 < matchesPerRound.length) {
+            const nextRoundMatchIndex = Math.floor(matchIndex / 2);
+            const nextRoundTeamPosition = matchIndex % 2 === 0 ? 'team1' : 'team2';
+            const nextRoundMatchDiv = document.getElementById(`round-${roundIndex + 1}-match-${nextRoundMatchIndex}`);
+            const nextRoundTeamSpan = nextRoundMatchDiv.querySelector(`.${nextRoundTeamPosition}`);
+            nextRoundTeamSpan.innerText = winner;
+            matchesPerRound[roundIndex + 1][nextRoundMatchIndex][nextRoundTeamPosition] = winner;
+        } else {
+            document.getElementById('final-winner').innerText = `Winner: ${winner}`;
+        }
+  
+        input.remove();
     }
 
     matchesPerRound.forEach((matches, roundIndex) => {
@@ -91,5 +105,6 @@ function generateBracket() {
     finalWinnerDiv.innerText = 'Winner: ';
     bracket.appendChild(finalWinnerDiv);
 }
+
 
 window.onload = generateBracket;
