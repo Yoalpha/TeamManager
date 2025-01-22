@@ -4,6 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kickoff Manager</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='landing_c.css') }}">
+
+    <style>
+        body{
+            background-image: url({{url_for('static', filename='images/Football.jpg')}});
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            
+            background-size: cover;
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.6); 
+            background-blend-mode: overlay; 
+        }
+    </style>
+
 </head>
 <body>
     <header>

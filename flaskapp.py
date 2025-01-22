@@ -30,9 +30,8 @@ rooms = {}
 @app.route("/", methods =["GET", "POST"])
 def main():
     filepng = os.path.join(app.config['UPLOAD_FOLDER'], 'file.png')
-    football = os.path.join(app.config['UPLOAD_FOLDER'], 'Football.jpg')
 
-    return render_template("landing.html", user_image = filepng, user_image2 = football)
+    return render_template("landing.html", user_image = filepng)
 
 
 
