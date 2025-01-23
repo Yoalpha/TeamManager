@@ -252,3 +252,48 @@ a:hover {
     transform: translateY(0);
   }
 }
+ul {
+  list-style-type: none; 
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #fafafa;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  max-width: 300px;
+  animation: fadeInChat 0.5s ease-in forwards;
+}
+
+li:hover {
+  background-color: #f1fcf2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+li::before {
+  content: "→"; 
+  margin-right: 8px; 
+  color: #000000;
+}
+
+li a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+li a:hover {
+  color: #005f2e;
+}
+
