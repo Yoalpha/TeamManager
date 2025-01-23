@@ -1,10 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import join_room, leave_room, send, SocketIO
 import mongomanager
-import pymongo
 from pymongo import MongoClient
 import randomCode
-import random
+import os
 from string import ascii_uppercase
 
 app = Flask(__name__)
@@ -20,7 +19,8 @@ app.secret_key = SECRET_KEY
 app.config['SECRET_KEY'] = SECRET_KEY
 cluster = MongoClient(MONGO_URL)
 
-
+pics_folder = os.path.join('static', 'images')
+app.config['UPLOAD_FOLDER'] = pics_folder
 
 socketio = SocketIO(app)
 global rooms 
@@ -29,8 +29,9 @@ rooms = {}
 
 @app.route("/", methods =["GET", "POST"])
 def main():
+    filepng = os.path.join(app.config['UPLOAD_FOLDER'], 'file.png')
 
-    return render_template("home.html")
+    return render_template("landing.html", user_image = filepng)
 
 
 
@@ -307,8 +308,8 @@ def delete(team_code):
 
 @app.route('/tournament/<tournament_name>')
 def tournament(tournament_name):
-    if 'username' in session and session['role'] == 'coach':
-        return render_template('Tournament-Home.html', tournament_name = tournament_name, tournament_id = tournament_id)
+    if 'username' in session and session['role'] == 'coach': 
+        return render_template('Tournament-Home.html', tournament_name = tournament_name)
     else:  
         return redirect(url_for(coach_login))
 
@@ -320,7 +321,7 @@ def tournament(tournament_name):
 def logout():
     session.pop('username', None)
     session.pop('role', None)
-    return redirect(url_for('player_login'))
+    return redirect(url_for('main'))
 
 
 
