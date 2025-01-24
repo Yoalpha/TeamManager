@@ -136,15 +136,21 @@ a:hover {
   flex: 1 1 calc(50% - 1rem);
 }
 
-.left-section h1,
+.left-section h1{
+  padding-left: 100px;
+  color: #007f3f;
+  margin-bottom: 1rem;
+}
 .right-section h1 {
   color: #007f3f;
   margin-bottom: 1rem;
+  
 }
 
 #player-teams {
   list-style: none;
-  padding: 0;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 #player-teams a {
@@ -171,6 +177,7 @@ a:hover {
 
 .join-team-section {
   margin-top: 2rem;
+  padding-right: 100px;
 }
 
 .join-team-section h3 {
