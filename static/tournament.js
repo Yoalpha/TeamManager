@@ -1,4 +1,6 @@
+console.log("JavaScript file loaded successfully!");
 function generateBracket() {
+    console.log("JavaScript file loaded successfully!");
     const bracket = document.getElementById('bracket');
     bracket.innerHTML = '';
     //got to fetch the datat here and get it into teams and the other arrays
@@ -107,4 +109,8 @@ function generateBracket() {
 }
 
 
-window.onload = generateBracket;
+document.addEventListener('DOMContentLoaded', () => {
+    generateBracket();
+});
+console.log("JavaScript file loaded successfully!");
+
