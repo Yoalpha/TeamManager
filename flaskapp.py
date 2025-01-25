@@ -33,6 +33,12 @@ def main():
 
     return render_template("landing.html", user_image = filepng)
 
+@app.route("/about")
+def about():
+    filepng = os.path.join(app.config['UPLOAD_FOLDER'], 'file.png')
+    return render_template('About.html',  user_image = filepng)
+
+
 
 
 @app.route("/player_register", methods =["GET", "POST"])

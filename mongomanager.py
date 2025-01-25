@@ -25,7 +25,7 @@ def createTeam(CoachUsername, teamID, team_name):
 
 def createTournament(CoachUsername, tournamentID, tournament_name):
     CoachUsername = coachestournamentdb[str(CoachUsername)]
-    post={'_id': tournamentID, 'tournament_name':tournament_name, 'teams': [CoachUsername]}
+    post={'_id': tournamentID, 'tournament_name':tournament_name, 'teams': [str(CoachUsername)]}
     CoachUsername.insert_one(post)
     
 

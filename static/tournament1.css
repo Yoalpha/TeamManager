@@ -32,11 +32,15 @@
 }
 
 #bracket {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 50px;
-    max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  margin: 50px auto;
+  max-width: 80%;
+  padding: 20px;
+  border-radius: 20px;
+  
 }
 
 .round {
@@ -212,10 +216,10 @@ button:hover {
   }
   
   .dropdown-content {
-    display: none;
-    position: absolute;
+    display:none;
+    position:fixed;
     background-color: #ffffff;
-    min-width: 160px;
+    min-width: 10px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
