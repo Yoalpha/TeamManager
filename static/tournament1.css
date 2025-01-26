@@ -2,139 +2,40 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    line-height: 1.6;
-    color: #c9d1d9;
-    background-color: #0d0d0d;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #58a6ff;
-    outline: none;
-  }
-  
-  a:hover {
-    color: #4f97d7;
-  }
-
-.topnav {
-    background-color: #050505; /* Jet black background color */
-    padding: 1.5em; /* Increase the padding to make the nav bar thicker */
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    border-bottom: 1px solid #30363d;
-  }
-  
-  .nav-center {
-    flex: 1;
-  }
-  
-  .nav-center h2 {
-    color: #c9d1d9;
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  .nav-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto; /* Move the coach dashboard towards the right */
-  }
-  
-  .nav-right a {
-    margin-right: 20px;
-    color: #c9d1d9;
-    transition: color 0.2s ease, background-color 0.2s ease; /* Add transition for hover animations */
-  }
-  
-  .nav-right a.active {
-    font-weight: bold;
-    color: #58a6ff;
-  }
-  
-  .nav-right a:hover {
-    color: #fff;
-    background-color: #161b22; /* Dark gray hover color */
-    border-radius: 10px;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #161b22;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 10px;
-    border: 1px solid #30363d;
-  }
-  
-  .dropdown-content a {
-    color: #c9d1d9;
-    padding: 12px 16px;
+}
+
+.navbar {
+    background-color: #0077ff;
+    overflow: hidden;
+    width: 100%;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
     text-decoration: none;
-    display: block;
-    transition: color 0.2s ease, background-color 0.2s ease; /* Add transition for hover animations */
-  }
-  
-  .dropdown-content a:hover {
-    color: #fff;
-    background-color: #1a1d23; /* Dark gray hover color */
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-  }
-  
-  .dropbtn {
-    background-color: #161b22;
-    color: #c9d1d9;
-    padding: 12px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.2s ease; /* Add transition for hover animations */
-  }
-  
-  .dropbtn:hover {
-    background-color: #3e8e41;
-  }
-  
-  .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-  }
+}
 
-
-
-
-
-
+.navbar a:hover {
+    background-color: #1d45f7;
+}
 
 #bracket {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 50px;
-    max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  margin: 50px auto;
+  max-width: 80%;
+  padding: 20px;
+  border-radius: 20px;
+  
 }
 
 .round {
@@ -152,18 +53,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #ffffff;
-    background-color: #333333;
-    color: #ffffff;
+    border: 2px solid #007B33; 
+    background-color: #f9f9f9; 
+    color: #333333;
     position: relative;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .match:hover, .final:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .match .team1, .match .team2 {
@@ -174,13 +75,14 @@
 
 .match .vs {
     font-size: 14px;
-    color: #bbbbbb;
+    color: #666666;
 }
+
 .team-input {
     padding: 6px 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid #007B33; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 14px;
     text-align: center;
     width: 80%;
@@ -189,7 +91,7 @@
 }
 
 .team-input:focus {
-    border-color: #0077ff;
+    border-color: #005922; 
 }
 
 .connector {
@@ -198,18 +100,18 @@
     top: 50%;
     width: 50px;
     height: 4px;
-    background-color: #ffffff;
+    background-color: #007B33; 
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .connector-up, .connector-down {
     position: absolute;
     width: 4px;
     height: 40px;
-    background-color: #ffffff;
+    background-color: #007B33;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .connector-up {
@@ -224,54 +126,135 @@
 
 .final {
     margin-top: 60px;
-    background-color: #444444;
+    background-color: #f0f0f0;
     border-radius: 15px;
 }
-
 
 button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #444444;
-    color: #ffffff;
-    border: 1px solid #ffffff;
+    background-color: #007B33; 
+    color: white;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
-    background-color: #555555;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background-color: #005922;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .final-winner {
     margin-top: 30px;
     padding: 10px;
-    border: 2px solid #ffffff;
-    background-color: #444444;
-    color: #ffffff;
+    border: 2px solid #007B33;
+    background-color: #f0f0f0; 
+    color: #333333;
     font-size: 18px;
     text-align: center;
     border-radius: 12px;
     width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-.final-winner {
-    margin-top: 30px;
-    padding: 10px;
-    border: 2px solid gold;
-    background-color: #444444;
-    color: #ffffff;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 12px;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .final-winner:hover {
-    color: gold;
-    border-color: gold;
-    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4); }
+    color: #007B33; 
+    border-color: #005922; 
+    box-shadow: 0 6px 12px rgba(0, 123, 51, 0.2);
+}
+.topnav {
+    background-color: #ffffff;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-center {
+    flex: 1;
+  }
+  
+  .nav-center h2 {
+    color: #000000;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .nav-right a {
+    margin-right: 20px;
+    font-weight: bold;
+    color: #008d1f;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .nav-right a.active {
+    font-weight: bold;
+  }
+  
+  .nav-right a:hover {
+    color: #00630d;
+  }
+  .dropdown {
+    position: relative;
+    top: -10px;
+  }
+  
+  .dropdown-content {
+    display:none;
+    position:fixed;
+    background-color: #ffffff;
+    min-width: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    z-index: 10;
+  }
+  
+  .dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dropdown-content a:hover {
+    color: #ff0000;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropbtn {
+    background-color: #ffffff;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .dropbtn:hover {
+    color: #000000;
+    background-color: #d8d8d8;
+  }
+  .arrow {
+    border: solid #007f3f;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+  }

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Group</title>
+ 
     <link rel="stylesheet" href="{{ url_for('static', filename='group.css') }}">
+
     
 </head>
 <body>
@@ -13,7 +15,7 @@
             <h2>Coach Dashboard</h2>
         </div>
         <div class="nav-right">
-            <a href="/coach_client" id="home-link">Home</a>
+            <a href="/coach_client" class="home">Home</a>
             <a class="active" href="/create_team" id="groups-link">Teams</a>
             <a href="/create_tournament" id="groups-link">Tornaments</a>
             <div class="dropdown">
@@ -36,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label>Your Team Code:</label>
-                    <p id="group-code-message">{{ groupCode }}</p>
+                    <p><span class="group-code">{{ groupCode }}</span></p>
                 </div>
                 <br>
                 <button type="submit" class="submit-btn" id="create-group-btn">Create Group</button>

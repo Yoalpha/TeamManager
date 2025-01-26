@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kickoff Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='landing_c.css') }}">
+
+    <style>
+        body{
+            background-image: url({{url_for('static', filename='images/Football.jpg')}});
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            
+            background-size: cover;
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.6); 
+            background-blend-mode: overlay; 
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <img src="{{user_image}}" >
+        <nav>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+    <main class="main-section">
+        <h1>Welcome to Kickoff Manager</h1>
+        <p>Your ultimate tool to organize and manage tournaments effortlessly.</p>
+        <div class="cta-container">
+            <div class="cta-buttons">
+                <a>Get Started</a>
+                <div class="dropdown">
+                    <a href="/coach_register">Coach </a>
+                    <a href="/player_register">Player </a>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a>Log In</a>
+                <div class="dropdown">
+                    <a href="/coach_login">Coach </a>
+                    <a href="/player_login">Player </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

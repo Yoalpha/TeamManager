@@ -13,7 +13,7 @@
             <h2>Coach Dashboard</h2>
         </div>
         <div class="nav-right">
-            <a class="active" href="/coach_client" id="home-link">Home</a>
+            <a  href="/coach_client" id="groups-link">Home</a>
             <a href="/create_team" id="groups-link">Teams</a>
             <a href="/create_tournament" id="groups-link">Tornaments</a>
             <div class="dropdown">
@@ -30,30 +30,26 @@
     <div class="main-content">
         <div class="left-section">
             <h3>Your Teams</h3>
-            <br>
-            <div id="coach-teams">
-                {% for i in result %}
-        
-                    <li><a href="/team/{{i}}">{{ i+"  |  "+ result[i]}}</a></li>
-        
-                {% endfor %}
+            <div class="scroll-container">
+                <ul id="coach-teams">
+                    {% for i in result %}
+                        <li><a href="/team/{{i}}">{{ i + "  |  " + result[i] }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
-            <br><br>
         </div>
-
-            
+        
         <div class="right-section">
             <h3>Your Tournaments</h3>
-            <br>
-            <div id="coach-tournaments">
-                {% for i in resulttournament %}
-        
-                    <li><a href="/tournament/{{i}}">{{ i+"  |  "+ resulttournament[i]}}</a></li>
-        
-                {% endfor %}
+            <div class="scroll-container">
+                <ul id="coach-tournaments">
+                    {% for i in resulttournament %}
+                        <li><a href="/tournament/{{i}}">{{ i + "  |  " + resulttournament[i] }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
-            <br><br>
         </div>
     </div>
+    
 </body>
 </html>
