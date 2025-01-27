@@ -67,20 +67,21 @@ a:hover {
 
 .dropdown-content {
   display: none;
-  position: absolute;
+  position:static;
   background-color: #ffffff;
-  min-width: 180px;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  min-width: 1px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   z-index: 1;
   border-radius: 8px;
-  border: 1px solid #eaeaea;
+  overflow: hidden;
+  border: 1px solid #ddd;
 }
 
 .dropdown-content a {
   color: #333;
   padding: 12px 16px;
-  display: block;
-  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dropdown-content a:hover {

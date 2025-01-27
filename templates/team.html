@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='team.css') }}">
 
 </head>
+<style>
+    @font-face {
+font-family:gotham ;
+src: url("{{ url_for('static', filename='gotham.ttf') }}");
+}
+body {
+font-family: gotham ;
+letter-spacing: 0.5px;
+line-height: 1.6;
+color: #333;
+background-color: #f5f5f5;
+}
+</style>
 <body>
     
     <div class="topnav">
