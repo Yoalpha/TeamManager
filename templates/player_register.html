@@ -3,6 +3,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <script type= "text/javascript "src="{{ url_for('static', filename='jaba.js') }}" ></script>
 </head>
+<style>
+    @font-face {
+font-family:gotham ;
+src: url("{{ url_for('static', filename='gotham.ttf') }}");
+}
+body {
+font-family: gotham ;
+letter-spacing: 0.5px;
+line-height: 1.6;
+color: #333;
+background-color: #f5f5f5;
+}
+</style>
 <body>
     <div class="container">
         <div class="tab-container">

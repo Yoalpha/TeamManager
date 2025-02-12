@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='team.css') }}">
 
 </head>
+<style>
+    @font-face {
+font-family:gotham ;
+src: url("{{ url_for('static', filename='gotham.ttf') }}");
+}
+body {
+font-family: gotham ;
+letter-spacing: 0.5px;
+line-height: 1.6;
+color: #333;
+background-color: #f5f5f5;
+}
+</style>
 <body>
     
     <div class="topnav">
@@ -39,9 +52,20 @@
             <h2>Players</h2>
             <ul id="team-players">
                 {% for player in players %}
-        
-                    <li>{{player}}</a></li>
-        
+                <li class="player-item">
+                    <span class="arrow-icon"></span>
+                    <span class="player-name">{{player}}</span>
+                    <div class="player-dropdown">
+                        <button class="player-dropbtn" onclick="toggleDropdown(this)">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </button>
+                        <div class="player-dropdown-content">
+                            <a href="">Delete</a>
+                        </div>
+                    </div>
+                </li>
                 {% endfor %}
             </ul>
             
@@ -64,17 +88,29 @@
             
                 
     </div>
-
-        
     </div>
 
     <script>
+         function toggleDropdown(button) {
+            document.querySelectorAll('.player-dropdown').forEach(dropdown => {
+                if (dropdown !== button.parentElement) {
+                    dropdown.classList.remove('active');
+                }
+            });
+            
+            button.parentElement.classList.toggle('active');
+        }
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.player-dropdown')) {
+                document.querySelectorAll('.player-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
 
             document.getElementById("message").addEventListener("keydown", function (event) {
             if (event.keyCode === 13) {
-                // Check if Enter key is pressed
                 document.getElementById("send-btn").click();
-                // Trigger button click
             }
         });
 

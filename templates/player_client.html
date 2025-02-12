@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='player_client.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='jaba.js') }}"></script>
 </head>
+<style>
+    @font-face {
+font-family:gotham ;
+src: url("{{ url_for('static', filename='gotham.ttf') }}");
+}
+body {
+font-family: gotham ;
+letter-spacing: 0.5px;
+line-height: 1.6;
+color: #333;
+background-color: #f5f5f5;
+}
+</style>
 <body>
     <div class="topnav">
         <div class="nav-center">
@@ -27,13 +40,13 @@
     
     <div class="main-content">
         <div class="left-section">
-            <h1>Your Teams</h1>
-            <div id="player-teams">
-                {% for i in result %}
-        
-                    <a href="/team/{{i}}">{{ i+"  |  "+ result[i]}}</a>
-        
-                {% endfor %}
+            <h2>Your Teams</h2>
+            <div class="scroll-container">
+                <ul id="coach-teams">
+                    {% for i in result %}
+                        <li><a href="/team/{{i}}">{{ i + "  |  " + result[i] }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
         <div class="right-section">
