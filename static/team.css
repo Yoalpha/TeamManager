@@ -28,7 +28,7 @@ a:hover {
 .topnav {
   background-color: #ffffff;
   padding: 1rem 2rem;
-  display: flex;
+  display:flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eaeaea;
@@ -67,7 +67,7 @@ a:hover {
 
 .dropdown-content {
   display: none;
-  position:static;
+  position:fixed;
   background-color: #ffffff;
   min-width: 1px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -85,7 +85,6 @@ a:hover {
 }
 
 .dropdown-content a:hover {
-  background-color: #f9f9f9;
   color: #ff0000;
 }
 
@@ -96,18 +95,16 @@ a:hover {
 .dropbtn {
   background-color: #ffffff;
   color: #333;
-  padding: 8px 16px;
-  border: 1px solid #eaeaea;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .dropbtn:hover {
-  background-color: #f4f4f4;
-  color: #007f3f;
+  color: #008612;
 }
-
-/* Main Content Section */
 
 .main-content {
   display: flex;
@@ -299,4 +296,79 @@ li a {
 li a:hover {
   color: #005f2e;
 }
+.player-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 14px !important;
+  margin-bottom: 8px;
+  background-color: #fafafa;
+  border-radius: 20px;
+  min-width: 300px;
+}
 
+.player-name {
+  margin-left: 8px;
+  flex: 1;
+}
+
+.player-dropdown {
+  position: relative;
+  margin-left: auto;
+  padding-left: 20px;
+}
+
+.player-dropbtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  outline: none;
+}
+
+.player-dropbtn .dot {
+  width: 4px;
+  height: 4px;
+  background-color: #333;
+  border-radius: 50%;
+}
+
+.player-dropdown-content {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background-color: #ffffff;
+  min-width: 120px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.player-dropdown.active .player-dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(-50%) translateX(5px);
+}
+
+.player-dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.player-dropdown-content a:hover {
+  background-color: #f9f9f9;
+  color: #ff0000;
+  border-radius: 8px;
+}

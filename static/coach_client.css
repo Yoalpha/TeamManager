@@ -1,8 +1,5 @@
 /* Global Styles */
-@font-face {
-  font-family:gotham ;
-  src: url("{{ url_for('static', filename='gotham.ttf') }}");
-}
+
 * {
   box-sizing: border-box;
   margin: 0;
