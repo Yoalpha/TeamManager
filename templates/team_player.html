@@ -4,10 +4,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Details</title>
+    <title>Team-Player</title>
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"> -->
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='team.css') }}">
+    <link rel="stylesheet" href="team.css">
 
 </head>
 <style>
@@ -52,20 +52,9 @@ background-color: #f5f5f5;
             <h2>Players</h2>
             <ul id="team-players">
                 {% for player in players %}
-                <li class="player-item">
-                    <span class="arrow-icon"></span>
-                    <span class="player-name">{{player}}</span>
-                    <div class="player-dropdown">
-                        <button class="player-dropbtn" onclick="toggleDropdown(this)">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </button>
-                        <div class="player-dropdown-content">
-                            <a href="">Delete</a>
-                        </div>
-                    </div>
-                </li>
+        
+                    <li>{{player}}</a></li>
+        
                 {% endfor %}
             </ul>
             
@@ -88,29 +77,17 @@ background-color: #f5f5f5;
             
                 
     </div>
+
+        
     </div>
 
     <script>
-         function toggleDropdown(button) {
-            document.querySelectorAll('.player-dropdown').forEach(dropdown => {
-                if (dropdown !== button.parentElement) {
-                    dropdown.classList.remove('active');
-                }
-            });
-            
-            button.parentElement.classList.toggle('active');
-        }
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.player-dropdown')) {
-                document.querySelectorAll('.player-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        });
 
             document.getElementById("message").addEventListener("keydown", function (event) {
             if (event.keyCode === 13) {
+                // Check if Enter key is pressed
                 document.getElementById("send-btn").click();
+                // Trigger button click
             }
         });
 
