@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Team Details</title>
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"> -->
+    
+        <!-- <link rel="stylesheet" href="team.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='team.css') }}">
+    </head>
+    <body>
+        
+
+<h2>Team Chat</h2>
+
+<div class="topnav">
+    <div class="nav-center">
+        <h2>Team Dashboard</h2>
+    </div>
+    <div class="nav-right">
+        <a href="/coach_client">Back to Dashboard </a>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Delete Team
+            <i class="arrow down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/delete/{{team_code}}"> Delete </a>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="message-box">
+        <div class="messages", id="messages">
+
+        </div>
+        <div class= "inputs">
+            <input type="text", rows ="3", placeholder="Message", name="message", id="message">
+            <button type="button", name="send", id="send-btn", onclick="sendMessage()">send</button>
+        </div>
+    </div>
+</div>
+
+<script>
+                document.getElementById("message").addEventListener("keydown", function (event) {
+            if (event.keyCode === 13) {
+                document.getElementById("send-btn").click();
+            }
+        });
+
+        var socketio = io()
+
+        const messages = document.getElementById("messages")
+
+        const createMessage = (name, msg) => {
+            const content = `
+            <div class ="text">
+                <span>
+                    <strong> ${name} </strong>: ${msg} 
+                </span> 
+                <span class="muted">
+                    ${new Date().toLocaleString()}
+                </span>
+            </div>
+            `
+            messages.innerHTML+=content;
+        };
+
+        socketio.on("message", (data) => {
+            createMessage(data.name, data.message);
+        });
+
+
+        const sendMessage = () => {
+            const message = document.getElementById("message");
+            if(message.value == "") return;
+            socketio.emit("message", {data: message.value});
+            message.value = "";
+        };
+
+    </script>
+
+    {% for msg in messages %}
+            <script type = "text/javascript">
+                createMessage("{{ msg.name }}", "{{ msg.message }}");
+            </script>
+    {% endfor %}
+    </body>
+    </html>
