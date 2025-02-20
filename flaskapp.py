@@ -211,7 +211,26 @@ def create_tournament():
         return redirect(url_for('coach_login'))
 
 
+@app.route('/team/<team_name>/chat', methods = ["GET", "POST"])
+def teamChat(team_name):
+    if 'username' in session:
+        #chat room
+        room = str(session['team_code'])
+        if room not in rooms:
+            rooms[room] = {"members": 1 ,"messages": []}
+        session['room'] = room
+        
+        print('rooms', rooms)
+
+
+
+
+
+        return render_template('chat.html', team_name = team_name, team_code = session["team_code"], messages = rooms[room]["messages"])
+    # , messages = rooms[room]["messages"]
     
+        
+
 @app.route('/team/<team_name>', methods =["GET", "POST"])
 def team(team_name):
     if 'username' in session and session['role'] == 'coach':
@@ -229,8 +248,9 @@ def team(team_name):
 
 
         #chat room
-        team_code = arr[team_name]
-        room = str(team_code)
+        session['team_code'] = arr[team_name]
+        
+        room = str(session['team_code'])
         if room not in rooms:
             rooms[room] = {"members": 1 ,"messages": []}
         session['room'] = room
@@ -241,7 +261,7 @@ def team(team_name):
 
 
 
-        return render_template('team.html', team_name = team_name, team_code = team_code, players = players, messages = rooms[room]["messages"])
+        return render_template('team_coach.html', team_name = team_name, team_code = session['team_code'], players = players,messages = rooms[room]["messages"])
     
     elif 'username' in session and session['role'] == 'student':
 
@@ -256,14 +276,17 @@ def team(team_name):
 
 
         #chat room
-        team_code = arr[team_name]
-        room = str(team_code)
+        session['team_code'] = arr[team_name]
+        
+        room = str(session['team_code'])
         if room not in rooms:
             rooms[room] = {"members": 1 ,"messages": []}
         session['room'] = room
-
+        
+        print('rooms', rooms)
         print(rooms[room]["messages"])
-        return render_template('team.html', team_code = arr[team_name], team_name = team_name, players = players,  messages = rooms[room]["messages"])
+
+        return render_template('team_player.html', team_code = arr[team_name], team_name = team_name, players = players)
 
     else:
         return redirect('coach_login')
@@ -320,7 +343,19 @@ def tournament(tournament_name):
         return redirect(url_for(coach_login))
 
 
-
+@app.route('/test')
+def test():
+    mongomanager.test('a', 'nlopjj')
+    #chat room
+    session['team_code'] = '123'
+    
+    room = str(session['team_code'])
+    if room not in rooms:
+        rooms[room] = {"members": 1 ,"messages": []}
+    session['room'] = room
+    
+    print('rooms', rooms)
+    return render_template('test.html', messages = rooms[room]["messages"])
 
 
 @app.route('/logout')

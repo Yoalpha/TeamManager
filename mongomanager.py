@@ -143,9 +143,17 @@ def getTeamPlayers(coach_name, team_name):
 
 
 def deleteTeam(coach_name, team_id):
+    collection2 = playerteamsdb
     collection = coachesteamsdb[str(coach_name)]
     query = {"_id": team_id}
     collection.delete_one(query)
+
+def test(coach_name, team_id):
+    names = playerteamsdb.list_collection_names()
+    for i in names:
+        collection2 = playerteamsdb[i]
+        for j in collection2.find():
+            print(j)
 
     
 #def deleteplayer(name):

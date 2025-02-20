@@ -50,7 +50,7 @@ background-color: #f5f5f5;
             <form action="{{url_for("create_tournament")}}" method="POST">
                 <div class="form-group">
                     <label for="team-id">Enter Tournament Name:</label>
-                    <input type="text" id="tournament-id" placeholder="Tournament Name" name="tournament-name" required>
+                    <input type="text" id="tournament-id" placeholder="Tournament Name" name="tournament-name">
                 </div>
                 <div class="form-group">
                     <label>Your Tournament Code: <b id="group-code-message">{{ tournamentCode }}</b></label>
