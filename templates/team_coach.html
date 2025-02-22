@@ -56,11 +56,11 @@ background-color: #f5f5f5;
             <a href="/coach_client">Back to Dashboard </a>
         </div>
         <div class="dropdown">
-            <button class="dropbtn">Delete Team
+            <button h  class="dropbtn">Delete Team
                 <i class="arrow down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/delete/{{team_code}}"> Delete </a>
+                <a href="/delete/{{team_code}}"> Delete</a>
             </div>
         </div>
     </div>
@@ -85,8 +85,8 @@ background-color: #f5f5f5;
                             <span class="dot"></span>
                         </button>
                         <div class="player-dropdown-content">
-                            <a href="" onclick="openPlayerNoteModal()">Add Note</a>
-                            <a href="">Delete</a>
+                            <a onclick="openPlayerNoteModal()">Add Note</a>
+                            <a href="/delete_player">Delete</a>
                         </div>
                     </div>
                 </li>
@@ -105,6 +105,7 @@ background-color: #f5f5f5;
                 </div>
             </div>
         </div>
+        <form action="{{ url_for( "team", team_name = t ) }}" method="POST">
         <div id="announcementModal" class="modal">
             <div class="modal-content">
                 <h3>Add New Announcement</h3>
@@ -116,7 +117,6 @@ background-color: #f5f5f5;
                 </div>
             </div>
         </div>
-        <form action="{{ url_for( "team", team_name = t ) }}" method="POST">
         <div id="playerNoteModal" class="modal">
             <div class="modal-content">
                 <h3>Add Note for Player</h3>
@@ -151,7 +151,7 @@ background-color: #f5f5f5;
             </div>
         </div>
     </div>
-    </form>
+</form>
     <script>
           function toggleChat() {
             const chatContainer = document.getElementById('chat-container');
