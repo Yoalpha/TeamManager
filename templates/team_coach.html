@@ -86,7 +86,7 @@ background-color: #f5f5f5;
                         </button>
                         <div class="player-dropdown-content">
                             <a onclick="openPlayerNoteModal()">Add Note</a>
-                            <a href="/delete_player">Delete</a>
+                            <a href="/delete_player/{{ player }}">Delete</a>
                         </div>
                     </div>
                 </li>
@@ -102,15 +102,19 @@ background-color: #f5f5f5;
                 </div>
                 <div id="announcements-list">
                     <!-- all of the announcements go here-->
+                    {% for announcement in announcements %}
+                        {{ announcement }}
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
-        <form action="{{ url_for( "team", team_name = t ) }}" method="POST">
+        <form action="{{ url_for( "team", team_name = team_name ) }}" method="POST">
         <div id="announcementModal" class="modal">
             <div class="modal-content">
                 <h3>Add New Announcement</h3>
                 <!-- not changing to input as they are essentially the same thing and also this is better becaust it supports multi line inputs-->
-                <textarea id="announcementText" placeholder="Type your announcement here..."></textarea>
+                <textarea id="announcement" name = "announcement" placeholder="Type your announcement here..."></textarea>
                 <div class="modal-buttons">
                     <button class="cancel-btn" onclick="closeAnnouncementModal()">Cancel</button>
                     <button type="submit" class="save-btn" onclick="saveAnnouncement()">Save</button>

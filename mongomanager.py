@@ -24,7 +24,7 @@ def addplayer(name, username, email, password, school):
 
 def createTeam(CoachUsername, teamID, team_name):
     CoachUsername = coachesteamsdb[str(CoachUsername)]
-    post={'_id': teamID, 'team_name':team_name, 'players': []}
+    post={'_id': teamID, 'team_name':team_name, 'players': [], 'announcements': []}
     CoachUsername.insert_one(post)
 
 def createTournament(CoachUsername, tournamentID, tournament_name):
@@ -173,6 +173,21 @@ def deleteplayer(team_id, player_name, coach_name):
     collect2 = playerteamsdb[player_name]
     query2 = {"_id": team_id}
     collect2.delete_one(query2)
+
+def addAnnoucement(team_id, coach_name, announcement):
+    print('printed announcement', announcement)
+    coachCollection = coachesteamsdb[coach_name]
+    result = coachCollection.find_one({'_id': team_id})
+    arr = result['announcements']
+    arr.append(announcement)
+    coachCollection.update_one({"_id":str(team_id)},{"$set":{"announcements":arr}})
+
+def getAnnoucements(team_id, coach_name):
+    coachCollection = coachesteamsdb[coach_name]
+    result = coachCollection.find_one({'_id': team_id})
+    arr = result['announcements']
+    return arr
+
 
 
 
