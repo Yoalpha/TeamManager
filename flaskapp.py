@@ -155,7 +155,7 @@ def coach_client():
     elif 'username' in session and session['role'] == 'student':
         return redirect(url_for('player_client'))
     else:
-        return redirect(url_for('coach_login'))
+        return redirect(url_for('/'))
     
 
 @app.route('/player_client', methods =["GET", "POST"])
@@ -181,7 +181,7 @@ def player_client():
         return render_template('player_client.html', username = session['username'], result = arr)
             
     else:
-        return redirect(url_for('player_login'))
+        return redirect(url_for('/'))
 
 @app.route('/create_team', methods =["GET", "POST"])
 def create_team():
@@ -194,7 +194,7 @@ def create_team():
             return render_template('group.html', groupCode = groupcode, username = session.get('username'))
         return render_template('group.html', username = session.get('username'))
     else:
-        return redirect('coach_login')
+        return redirect('/')
     
 @app.route('/create_tournament', methods = ['GET', 'POST'])
 def create_tournament():
@@ -208,7 +208,7 @@ def create_tournament():
             return render_template('tornament_create.html', tournamentCode = tournamentcode, username = session.get('username'))
         return render_template('tornament_create.html', username = session.get('username'))
     else:
-        return redirect(url_for('coach_login'))
+        return redirect(url_for('/'))
 
 
 @app.route('/team/<team_name>/chat', methods = ["GET", "POST"])
@@ -253,12 +253,17 @@ def team(team_name):
         
         print('rooms', rooms)
 
+
+
         if request.method == "POST":
-            print('posted in team coach')
+            announcement = request.form.get('announcement')
+            mongomanager.addAnnoucement(session.get('team_code'), session.get('username'), announcement)
 
 
+        announcementsArray = mongomanager.getAnnoucements(session.get('team_code'), session.get('username'))
 
-        return render_template('team_coach.html', team_name = team_name, team_code = session['team_code'], players = players,messages = rooms[room]["messages"])
+
+        return render_template('team_coach.html', announcements = announcementsArray, team_name = team_name, team_code = session['team_code'], players = players,messages = rooms[room]["messages"])
     
     elif 'username' in session and session['role'] == 'student':
 
@@ -285,7 +290,7 @@ def team(team_name):
         return render_template('team_player.html', team_code = arr[team_name], team_name = team_name, players = players)
 
     else:
-        return redirect('coach_login')
+        return redirect('/')
 
 
 @socketio.on("message")
@@ -327,16 +332,32 @@ def disconnect():
 
 @app.route('/delete/<team_code>')
 def delete(team_code):
-    coach_name = session.get('username')
-    mongomanager.deleteTeam(coach_name,team_code)
-    return redirect(url_for('coach_client'))
+    if 'username' in session and session['role'] == 'coach':
+
+        coach_name = session.get('username')
+        mongomanager.deleteTeam(coach_name,team_code)
+        return redirect(url_for('coach_client'))
+    
+    else:
+        return redirect(url_for('/'))
+
+
+@app.route('/delete_player/<player_name>')
+def deletePlayer(player_name):
+    if 'username' in session and session['role'] == 'coach':
+        coach_name = session.get('username')
+        mongomanager.deleteplayer(session.get('team_code'), player_name, coach_name)
+        return redirect(url_for('coach_client'))
+    else:  
+        return redirect(url_for('/'))
+
 
 @app.route('/tournament/<tournament_name>')
 def tournament(tournament_name):
     if 'username' in session and session['role'] == 'coach': 
         return render_template('Tournament-Home.html', tournament_name = tournament_name)
     else:  
-        return redirect(url_for(coach_login))
+        return redirect(url_for('/'))
 
 
 @app.route('/test')
