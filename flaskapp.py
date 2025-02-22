@@ -244,10 +244,6 @@ def team(team_name):
         players = mongomanager.getTeamPlayers(session['username'], team_name)
 
 
-
-
-
-        #chat room
         session['team_code'] = arr[team_name]
         
         room = str(session['team_code'])
@@ -276,7 +272,6 @@ def team(team_name):
         players = mongomanager.getTeamPlayers(arr['coachname'], team_name)
 
 
-        #chat room
         session['team_code'] = arr[team_name]
         
         room = str(session['team_code'])
