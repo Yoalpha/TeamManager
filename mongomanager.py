@@ -98,7 +98,7 @@ def addPlayerToTeam(team_id, coach_name, username):
     team_name = result['team_name']
     arr.append(username)
     PlayerUsername = playerteamsdb[str(username)]
-    post={'_id': team_id, 'team_name': team_name, 'coach_name': coach_name}
+    post={'_id': team_id, 'team_name': team_name, 'coach_name': coach_name, 'player_notes': ''}
     PlayerUsername.insert_one(post)
     collect.update_one({"_id":str(team_id)},{"$set":{"players":arr}})
 
@@ -108,11 +108,14 @@ def addTeamToTournament(tournament_id, coach_name, username):
     print(result)
     arr = result['teams']
     tournament_name = result['tournament_name']
+    print('tourna name', tournament_name)
     arr.append(username)
-    CoachUsername = coachesteamsdb[str(username)]
+    collect.update_one({"_id":str(tournament_id)},{"$set":{"teams":arr}})
+
+    CoachUsername = coachestournamentdb[str(username)]
     post={'_id': tournament_id, 'tournament_name': tournament_name, 'coach_name': coach_name}
     CoachUsername.insert_one(post)
-    collect.update_one({"_id":str(tournament_id)},{"$set":{"teams":arr}})
+    
 
 def getCoachTeams(coach_name):
     collect = coachesteamsdb[str(coach_name)]
@@ -137,13 +140,12 @@ def getPlayerTeams(player_name):
     
     return result
 
-def getTeamPlayers(coach_name, team_name):
+def getTeamPlayers(coach_name, team_id):
     
     collect = coachesteamsdb[str(coach_name)]
-    result = collect.find({'team_name': team_name})
-    for i in result:
-        players = i['players']
-    return players
+    result = collect.find_one({'_id': team_id})
+    arr = result['players']
+    return arr
 
 
 def deleteTeam(coach_name, team_id):
@@ -158,11 +160,15 @@ def deleteTeam(coach_name, team_id):
         # defining the collection of one player
         collection2 = playerteamsdb[i]
         query2 = {"_id": team_id}
-        # deleting the team for every player with that name thats why the loop
+        # deleting the team for every player with that team thats why the loop
         collection2.delete_one(query2)
 
 # def test(coach_name, team_id):
 
+def getCoachName(username, team_id):
+    collect = playerteamsdb[username]
+    result = collect.find_one({'_id': team_id})
+    return result['coach_name']
 
 def deleteplayer(team_id, player_name, coach_name):
     collect = coachesteamsdb[str(coach_name)]
@@ -188,7 +194,21 @@ def getAnnoucements(team_id, coach_name):
     arr = result['announcements']
     return arr
 
+def deleteAnnouncement(team_id, announcement, coach_name):
+    coachCollection = coachesteamsdb[coach_name]
+    result = coachCollection.find_one({'_id': team_id})
+    arr = result['announcements']
+    arr.remove(announcement)
+    coachCollection.update_one({"_id":str(team_id)},{"$set":{"announcements":arr}})
 
+def addPlayerNotes(team_id, notes, player_name):
+    collect = playerteamsdb[player_name]
+    collect.update_one({"_id":str(team_id)}, {"$set":{"player_notes":notes}})
+
+def getPlayerNotes(team_id, player_name):
+    collect = playerteamsdb[player_name]
+    result = collect.find_one({'_id': team_id})
+    return result['player_notes']
 
 
 

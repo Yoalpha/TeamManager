@@ -85,8 +85,9 @@ background-color: #f5f5f5;
                             <span class="dot"></span>
                         </button>
                         <div class="player-dropdown-content">
-                            <a onclick="openPlayerNoteModal()">Add Note</a>
+                            <a onclick="openPlayerNoteModal(); setPlayer('{{player}}')">Add Note</a>
                             <a href="/delete_player/{{ player }}">Delete</a>
+                            
                         </div>
                     </div>
                 </li>
@@ -102,9 +103,23 @@ background-color: #f5f5f5;
                 </div>
                 <div id="announcements-list">
                     <!-- all of the announcements go here-->
-                    {% for announcement in announcements %}
-                        {{ announcement }}
-                    {% endfor %}
+                    <ul>
+                        {% for announcement in announcements %}
+                            <li>
+                                {{ announcement }}
+                                <div class="player-dropdown">
+                                    <button class="player-dropbtn" onclick="toggleDropdown(this)">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                    </button>
+                                    <div class="player-dropdown-content">
+                                        <a href="/delete_announcement/{{ announcement }}">Delete</a>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
 
                 </div>
             </div>
@@ -121,20 +136,24 @@ background-color: #f5f5f5;
                 </div>
             </div>
         </div>
+        </form>
+
+        <form action="{{ url_for( "team", team_name = team_name ) }}" method="POST">
         <div id="playerNoteModal" class="modal">
             <div class="modal-content">
                 <h3>Add Note for Player</h3>
-                <textarea id="playerNoteText" placeholder="Type your note here..."></textarea>
+                <input type="text" id="player" name="player">
+                <textarea id="player_notes" name="player_notes" placeholder="Type your note here..."></textarea>
                 <div class="modal-buttons">
                     <button class="cancel-btn" onclick="closePlayerNoteModal()">Cancel</button>
-                    <button  type="submit" class="save-btn" onclick="savePlayerNote()">Save</button>
+                    <button  type="submit" class="save-btn" onclick="getPlayer()">Save</button>
                 </div>
             </div>
         </div>
-                
+        </form>
     </div>
     </div>
-    <div id="announcementModal" class="modal">
+    <!-- <div id="announcementModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Add New Announcement</div>
             <textarea placeholder="Type your announcement here..."></textarea>
@@ -154,8 +173,8 @@ background-color: #f5f5f5;
                 <button class="save-btn" onclick="closeModal('playerNoteModal')">Save</button>
             </div>
         </div>
-    </div>
-</form>
+    </div> -->
+
     <script>
           function toggleChat() {
             const chatContainer = document.getElementById('chat-container');
@@ -224,8 +243,8 @@ background-color: #f5f5f5;
             document.getElementById('announcementModal').style.display = 'none';
         }
 
-        function openPlayerNoteModal(event) {
-            event.preventDefault();
+        function openPlayerNoteModal() {
+            
             document.getElementById('playerNoteModal').style.display = 'block';
         }
 
@@ -246,6 +265,17 @@ background-color: #f5f5f5;
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
 }
+
+let PLAYER = "";
+
+function setPlayer(player){
+    PLAYER = player;
+    const inputElement = document.getElementById("player");
+    inputElement.value = PLAYER;
+    console.log(PLAYER);
+}
+
+
 
 window.onclick = function(event) {
     if (event.target.classList.contains('modal')) {
@@ -269,6 +299,7 @@ socketio.on("announcement", (data) => {
 
 const saveAnnouncement = () => {
     const text = document.getElementById("announcementText").value.trim();
+    
     
     if (text === "") return;
     socketio.emit("announcement", { text: text, date: new Date().toISOString() });
