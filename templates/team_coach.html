@@ -85,8 +85,8 @@ background-color: #f5f5f5;
                             <span class="dot"></span>
                         </button>
                         <div class="player-dropdown-content">
+                            <a href="" onclick="openPlayerNoteModal()">Add Note</a>
                             <a href="">Delete</a>
-                            <a href="">Add Note</a>
                         </div>
                     </div>
                 </li>
@@ -101,33 +101,32 @@ background-color: #f5f5f5;
                     <button class="add-announcement-btn" onclick="openAnnouncementModal()">+</button>
                 </div>
                 <div id="announcements-list">
-                    <!-- announcements populated heree-->
+                    <!-- all of the announcements go here-->
                 </div>
             </div>
         </div>
-
         <div id="announcementModal" class="modal">
             <div class="modal-content">
                 <h3>Add New Announcement</h3>
+                <!-- not changing to input as they are essentially the same thing and also this is better becaust it supports multi line inputs-->
                 <textarea id="announcementText" placeholder="Type your announcement here..."></textarea>
                 <div class="modal-buttons">
                     <button class="cancel-btn" onclick="closeAnnouncementModal()">Cancel</button>
-                    <button class="save-btn" onclick="saveAnnouncement()">Save</button>
+                    <button type="submit" class="save-btn" onclick="saveAnnouncement()">Save</button>
                 </div>
             </div>
         </div>
-    
+        <form action="{{ url_for( "team", team_name = t ) }}" method="POST">
         <div id="playerNoteModal" class="modal">
             <div class="modal-content">
                 <h3>Add Note for Player</h3>
                 <textarea id="playerNoteText" placeholder="Type your note here..."></textarea>
                 <div class="modal-buttons">
                     <button class="cancel-btn" onclick="closePlayerNoteModal()">Cancel</button>
-                    <button class="save-btn" onclick="savePlayerNote()">Save</button>
+                    <button  type="submit" class="save-btn" onclick="savePlayerNote()">Save</button>
                 </div>
             </div>
         </div>
-    
                 
     </div>
     </div>
@@ -141,7 +140,7 @@ background-color: #f5f5f5;
             </div>
         </div>
     </div>
-    
+
     <div id="playerNoteModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Add Player Note</div>
@@ -152,7 +151,7 @@ background-color: #f5f5f5;
             </div>
         </div>
     </div>
-
+    </form>
     <script>
           function toggleChat() {
             const chatContainer = document.getElementById('chat-container');
@@ -223,7 +222,6 @@ background-color: #f5f5f5;
 
         function openPlayerNoteModal(event) {
             event.preventDefault();
-            currentPlayerId = event.target.closest('.player-item').dataset.playerId;
             document.getElementById('playerNoteModal').style.display = 'block';
         }
 
@@ -232,7 +230,7 @@ background-color: #f5f5f5;
             currentPlayerId = null;
         }
 
-        window.onclick = function(event) {
+        window.onclick = function(event) {8
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
             }
@@ -273,7 +271,6 @@ const saveAnnouncement = () => {
     document.getElementById("announcementText").value = "";
     closeAnnouncementModal();
 };
-
     </script>
 
     {% for msg in messages %}

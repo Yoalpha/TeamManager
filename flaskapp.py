@@ -253,7 +253,8 @@ def team(team_name):
         
         print('rooms', rooms)
 
-
+        if request.method == "POST":
+            print('posted in team coach')
 
 
 
