@@ -164,8 +164,17 @@ def deleteTeam(coach_name, team_id):
 # def test(coach_name, team_id):
 
 
-def deleteplayer(name):
-    
+def deleteplayer(team_id, player_name, coach_name):
+    collect = coachesteamsdb[str(coach_name)]
+    result = collect.find_one({'_id': team_id})
+    arr = result['players']
+    arr.remove(player_name)
+    collect.update_one({"_id":str(team_id)},{"$set":{"players":arr}})
+    collect2 = playerteamsdb[player_name]
+    query2 = {"_id": team_id}
+    collect2.delete_one(query2)
+
+
 
 
 
