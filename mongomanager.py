@@ -1,7 +1,11 @@
 import pymongo
 from pymongo import MongoClient
 
-cluster = MongoClient('mongodb+srv://yoyogesh27:LH44isthegoat@cluster0.umivw3g.mongodb.net/?retryWrites=true&w=majority')
+MONGO = open('mongoURL.txt', 'r')
+MONGO_URL = MONGO.readline()
+MONGO.close()
+
+cluster = MongoClient(MONGO_URL)
 
 logindb = cluster["login"]
 coachesteamsdb = cluster["coachesteams"]
@@ -143,20 +147,25 @@ def getTeamPlayers(coach_name, team_name):
 
 
 def deleteTeam(coach_name, team_id):
-    collection2 = playerteamsdb
+    # getting the collection of the coach name from the coaches teams database
     collection = coachesteamsdb[str(coach_name)]
     query = {"_id": team_id}
     collection.delete_one(query)
-
-def test(coach_name, team_id):
+    # names of the collections
     names = playerteamsdb.list_collection_names()
+    # looping throught the players in the db
     for i in names:
+        # defining the collection of one player
         collection2 = playerteamsdb[i]
-        for j in collection2.find():
-            print(j)
+        query2 = {"_id": team_id}
+        # deleting the team for every player with that name thats why the loop
+        collection2.delete_one(query2)
 
+# def test(coach_name, team_id):
+
+
+def deleteplayer(name):
     
-#def deleteplayer(name):
 
 
 
