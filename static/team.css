@@ -596,3 +596,46 @@ li a:hover {
   border-radius: 4px;
   resize: vertical;
 }
+
+#player {
+  position: relative;
+  font-size: 18px;
+  bottom: 31px;
+  left: 38%;
+  font-weight:bold;
+  border: 1px solid transparent; 
+  outline: none;
+  background-color: transparent; 
+  padding: 2px;
+  margin-left: 8px; 
+}
+.announcement-container_player {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 25px;
+
+}
+
+.announcement-header_player {
+  display: block;     
+  text-align: left;   
+}
+
+
+#Notess {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+
+  margin-bottom: 0.5rem;
+}
+
+#team-players {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 600; 
+  text-align: left;
+}
