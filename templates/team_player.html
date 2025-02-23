@@ -176,23 +176,31 @@ background-color: #f5f5f5;
             
             
     
-            <h2>Players</h2>
+            <h2>Notes</h2>
             <ul id="team-players">
-                {% for player in players %}
-        
-                    <li>{{player}}</a></li>
-        
-                {% endfor %}
+                {{player_notes}}
             </ul>
             
         </div>
         <div class="right-section">
-        
-            
-            <h2>anouncements</h2>
+            <div class="announcement-container">
+                <div class="announcement-header">
+                    <h2>Announcements</h2>
+    
+                </div>
+                <div id="announcements-list">
+                    <!-- all of the announcements go here-->
+                    <ul>
+                        {% for announcement in announcements %}
+                            <li>
+                                {{ announcement }}
+                             
+                            </li>
+                        {% endfor %}
+                    </ul>
 
-        
-    </div>
+                </div>
+            </div>
 
     <script>
         function toggleChat() {

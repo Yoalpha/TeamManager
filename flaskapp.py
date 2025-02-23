@@ -174,6 +174,7 @@ def player_client():
             coach_name = request.form.get('coach-name')
             print(team_id, coach_name)
             mongomanager.addPlayerToTeam(team_id, coach_name, session['username'])
+            return redirect(url_for('player_client'))
             
 
 
@@ -189,12 +190,13 @@ def create_team():
         if request.method == 'POST':
             team_name = request.form.get('team-name')
             groupcode = randomCode.get_random_string(6)
-            mongomanager.createTeam(session['username'], groupcode, team_name)
+            mongomanager.createTeam(session['username'], groupcode, team_name.strip())
             rooms[groupcode] = {"members": 1 ,"messages": []}
             return render_template('group.html', groupCode = groupcode, username = session.get('username'))
         return render_template('group.html', username = session.get('username'))
     else:
         return redirect('/')
+    
     
 @app.route('/create_tournament', methods = ['GET', 'POST'])
 def create_tournament():
@@ -209,28 +211,35 @@ def create_tournament():
         return render_template('tornament_create.html', username = session.get('username'))
     else:
         return redirect(url_for('/'))
+    
+@app.route('/join_tournament', methods = ['GET', 'POST'])
+def join_tournament():
+    if 'username' in session and session['role'] == 'coach':
+        if request.method == 'POST':
+            tournament_coach_name = request.form.get('tournament-coach-input')
+            tournament_id = request.form.get('tournament-code-input')
+            mongomanager.addTeamToTournament(tournament_id, tournament_coach_name, session.get('username'))
+            
+            
+            return redirect(url_for('coach_client'))
+        return render_template('tornament_join.html', username = session.get('username'))
+    else:
+        return redirect(url_for('/'))
 
 
 @app.route('/team/<team_name>/chat', methods = ["GET", "POST"])
 def teamChat(team_name):
     if 'username' in session:
+
         #chat room
         room = str(session['team_code'])
         if room not in rooms:
             rooms[room] = {"members": 1 ,"messages": []}
         session['room'] = room
         
-        print('rooms', rooms)
-
-
-
-
 
         return render_template('chat.html', team_name = team_name, team_code = session["team_code"], messages = rooms[room]["messages"])
-    # , messages = rooms[room]["messages"]
     
-        
-
 @app.route('/team/<team_name>', methods =["GET", "POST"])
 def team(team_name):
     if 'username' in session and session['role'] == 'coach':
@@ -241,11 +250,12 @@ def team(team_name):
         for i in result:
             arr[i['team_name']] = i['_id']
 
-        players = mongomanager.getTeamPlayers(session['username'], team_name)
+        
 
 
         session['team_code'] = arr[team_name]
-        
+        session['team_name'] = team_name
+
         room = str(session['team_code'])
         if room not in rooms:
             rooms[room] = {"members": 1 ,"messages": []}
@@ -253,18 +263,39 @@ def team(team_name):
         
         print('rooms', rooms)
 
+        players = mongomanager.getTeamPlayers(session.get('username'), session.get('team_code'))
+        
+        
+        
+        
+
 
 
         if request.method == "POST":
             announcement = request.form.get('announcement')
-            mongomanager.addAnnoucement(session.get('team_code'), session.get('username'), announcement)
+            player_notes = request.form.get('player_notes')
+            player = request.form.get('player')
+
+            if announcement == None:
+                pass
+            else:
+                if announcement.strip() != "":
+                    mongomanager.addAnnoucement(session.get('team_code'), session.get('username'), announcement)
+            if player_notes == None:
+                pass
+            else:
+                if player_notes.strip() != '':
+                    mongomanager.addPlayerNotes(session.get('team_code'), player_notes, player)
+
 
 
         announcementsArray = mongomanager.getAnnoucements(session.get('team_code'), session.get('username'))
 
-
         return render_template('team_coach.html', announcements = announcementsArray, team_name = team_name, team_code = session['team_code'], players = players,messages = rooms[room]["messages"])
     
+
+
+
     elif 'username' in session and session['role'] == 'student':
 
         result = mongomanager.getPlayerTeams(session['username'])
@@ -272,12 +303,13 @@ def team(team_name):
     
         for i in result:
             arr[i['team_name']] = i['_id']
-            arr['coachname'] = i['coach_name']
         print('student arr', arr) 
-        players = mongomanager.getTeamPlayers(arr['coachname'], team_name)
-
+        
 
         session['team_code'] = arr[team_name]
+        coach_name = mongomanager.getCoachName(session.get('username'), session.get('team_code'))
+        players = mongomanager.getTeamPlayers(coach_name, session.get('team_code'))
+
         
         room = str(session['team_code'])
         if room not in rooms:
@@ -287,7 +319,9 @@ def team(team_name):
         print('rooms', rooms)
         print(rooms[room]["messages"])
 
-        return render_template('team_player.html', team_code = arr[team_name], team_name = team_name, players = players)
+        announcementsArray = mongomanager.getAnnoucements(session.get('team_code'), coach_name)
+
+        return render_template('team_player.html', announcements = announcementsArray, team_code = arr[team_name], team_name = team_name, players = players, player_notes = mongomanager.getPlayerNotes(session.get('team_code'), session.get('username')))
 
     else:
         return redirect('/')
@@ -339,7 +373,7 @@ def delete(team_code):
         return redirect(url_for('coach_client'))
     
     else:
-        return redirect(url_for('/'))
+        return redirect('/')
 
 
 @app.route('/delete_player/<player_name>')
@@ -349,7 +383,16 @@ def deletePlayer(player_name):
         mongomanager.deleteplayer(session.get('team_code'), player_name, coach_name)
         return redirect(url_for('coach_client'))
     else:  
-        return redirect(url_for('/'))
+        return redirect('/')
+
+@app.route('/delete_announcement/<announcement>')
+def deleteAnnouncement(announcement):
+    if 'username' in session and session['role'] == 'coach':
+        coach_name = session.get('username')
+        mongomanager.deleteAnnouncement(session.get('team_code'), announcement, coach_name)
+        return redirect(url_for('team', team_name = session.get('team_name')))
+    else:  
+        return redirect('/')
 
 
 @app.route('/tournament/<tournament_name>')

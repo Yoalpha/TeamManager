@@ -43,29 +43,23 @@ background-color: #f5f5f5;
     </div>  
     <div class="content">
         <div class="content-container">
-            <h1>Welcome! Create or Join a Tournament</h1>
+            <h1>Welcome! Join a Tournament</h1>
             
-            <h2>Create a Tournament:</h2>
-            <br>
-            <form action="{{url_for("create_tournament")}}" method="POST">
-                <div class="form-group">
-                    <label for="team-id">Enter Tournament Name:</label>
-                    <input type="text" id="tournament-id" placeholder="Tournament Name" name="tournament-name" required>
-                </div>
-                <div class="form-group">
-                    <label>Your Tournament Code: <b id="group-code-message">{{ tournamentCode }}</b></label>
-                    
-                </div>
-                <br>
-                <button type="submit" class="submit-btn" id="create-group-btn">Create Tournament</button>
+        <form action="{{url_for("join_tournament")}}" method="POST">
 
+            <input type="text" id="tournament-coach-id" name="tournament-coach-input" placeholder="Enter Coach Name" required>
+            <br>
+            <input type="text" id="tournament-code-id" name="tournament-code-input" placeholder="Enter Tournament Code" required>
+            <br>
+            <br>
+            <button type="submit" class="submit-btn" id="create-group-btn">Join Tournament</button>
+            <p id="join-message"></p>
         </form>
             <br>
             <br>
-            <a href="/join_tournament" id="home-link">Join a Tournament</a>
+            <a href="/create_tournament" id="home-link">Create a Tournament</a>
             <br>
             <a href="/coach_client" id="home-link">Go to Homepage</a>
-            
         </div>
     </div>
 
