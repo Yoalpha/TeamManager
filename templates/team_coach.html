@@ -141,8 +141,8 @@ background-color: #f5f5f5;
         <form action="{{ url_for( "team", team_name = team_name ) }}" method="POST">
         <div id="playerNoteModal" class="modal">
             <div class="modal-content">
-                <h3>Add Note for Player</h3>
-                <input type="text" id="player" name="player">
+                <h3>Add Note for Player:</h3>
+                <input type="text" id="player" name="player" class="Hidden">
                 <textarea id="player_notes" name="player_notes" placeholder="Type your note here..."></textarea>
                 <div class="modal-buttons">
                     <button class="cancel-btn" onclick="closePlayerNoteModal()">Cancel</button>

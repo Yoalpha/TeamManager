@@ -175,11 +175,17 @@ background-color: #f5f5f5;
             <h1>Team: {{ team_name }} | Code: {{team_code}}</h1>
             
             
-    
-            <h2>Notes</h2>
+            <div class="announcement-container_player">
+                <div class="announcement-header_player">
+            <h2 id="Notess">
+                Notes
+                <i class="fas fa-sticky-note" style="margin-right: 8px;"></i>
+            </h2>
             <ul id="team-players">
                 {{player_notes}}
             </ul>
+        </div>
+    </div>
             
         </div>
         <div class="right-section">
