@@ -102,7 +102,7 @@ pip install flask, flask_socketio, pymongo
 
 Contributors names and contact info
 
-[Yogesh Naresh](https://github.com/Yoalpha)
-[Akhilan Jeyaraj](https://github.com/Akhilan-J)
+* [Yogesh Naresh](https://github.com/Yoalpha)
+* [Akhilan Jeyaraj](https://github.com/Akhilan-J)
 
 
