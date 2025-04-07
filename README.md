@@ -8,7 +8,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 
 ### Key Features:
 
-1) Coach Dashboard:
+#### 1) Coach Dashboard:
 * A powerful dashboard that allows coaches to oversee all their teams and players. The interface is optimized for quick navigation and real-time updates.
 
 * Create, edit, and delete teams.
@@ -17,7 +17,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 
 * Manage multiple teams across different sports or age categories.
 
-2) Player Management:
+#### 2) Player Management:
 * Coaches can maintain detailed profiles for each player, including performance statistics, attendance, and personalized notes.
 
 * Add private notes for each player (e.g., feedback, progress, areas of improvement).
@@ -26,7 +26,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 
 * Players cannot edit notes, maintaining the coach’s control over evaluations.
 
-3) Tournament Management:
+#### 3) Tournament Management:
 * A built-in module for organizing tournaments and matches.
 
 * Schedule fixtures and input scores.
@@ -35,7 +35,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 
 * Track performance and update standings in real time.
 
-4) Player Portal:
+#### 4) Player Portal:
 * Players get their own dashboard to stay connected and informed.
 
 * View teams they are assigned to.
@@ -46,7 +46,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 
 * Get notified about upcoming practices, matches, or changes.
 
-4) Team Communication & Announcements:
+#### 5) Team Communication & Announcements:
 
 * Players can communicate with teammates via a secure team chat feature.
 
@@ -54,7 +54,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 
 * No direct messaging to prevent distractions and maintain sportsmanship.
 
-5) Coach Announcements:
+#### 6) Coach Announcements:
 * Coaches can send announcements to individual teams or all players.
 
 * Push notifications for urgent updates (e.g., venue changes, cancellations).
@@ -63,7 +63,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 
 * Access Control & Authentication:
 
-6) Role-based access:
+#### 7) Role-based access:
 
 * Coach: Full administrative access.
 
@@ -102,7 +102,6 @@ pip install flask, flask_socketio, pymongo
 
 Contributors names and contact info
 
-ex. Yogesh Naresh 
 [Yogesh Naresh](https://github.com/Yoalpha)
 [Akhilan Jeyaraj](https://github.com/Akhilan-J)
 
