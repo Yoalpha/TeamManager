@@ -86,7 +86,7 @@ Kickoff Manager is a comprehensive mobile and web-based application designed to 
 * Download the project as a Zip folder
 * Use winrar or any other file archiver to extract the contents
 * Ensure Python3 is installed on your device [Install Python](https://www.python.org/downloads/)
-* Install Dependencies by running command in CMD
+* Install Dependencies by running the command below in CMD
 
 ```
 pip install flask, flask_socketio, pymongo
@@ -96,11 +96,9 @@ pip install flask, flask_socketio, pymongo
 * Make sure all the dependencies are installed
 * Run the run.bat file
 * Open local host on port 5000 on your browser
-* or click [here](http://localhost:5000/)
+* Or click [here](http://localhost:5000/)
 
 ## Authors
-
-Contributors names and contact info
 
 * [Yogesh Naresh](https://github.com/Yoalpha)
 * [Akhilan Jeyaraj](https://github.com/Akhilan-J)
